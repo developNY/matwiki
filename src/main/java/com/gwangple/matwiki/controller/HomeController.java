@@ -51,7 +51,7 @@ public class HomeController {
 		
 		
 		model.addAttribute("serverTime", homeService.getTest() );
-		
+		//박종대박종대박종대박종대박종대박종대박종대박종대 20170613
 		return "home1";
 	}
 	
