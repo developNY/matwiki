@@ -2,7 +2,9 @@ package com.gwangple.matwiki.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gwangple.matwiki.service.HomeService;
 
@@ -32,15 +35,20 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, @RequestParam Map<String, String> map) {
+	
 		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		logger.info("test::::::::::::::::: [{}].", map.get("param"));
+		logger.info("test::::::::::::::::: [{}].", map);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", homeService.getTest() );
+		logger.info("formattedDate::::::::::::::::: [{}].", formattedDate);
+		//model.addAttribute("serverTime", homeService.getTest() );
 		
 		return "home";
 	}

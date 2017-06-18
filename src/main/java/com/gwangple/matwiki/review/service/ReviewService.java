@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.review;
+package com.gwangple.matwiki.review.service;
 
 public class ReviewService {
 

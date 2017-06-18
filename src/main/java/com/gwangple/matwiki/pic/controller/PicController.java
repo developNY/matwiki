@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.pic;
+package com.gwangple.matwiki.pic.controller;
 
 public class PicController {
 

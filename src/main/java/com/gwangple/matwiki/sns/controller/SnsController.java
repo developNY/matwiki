@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.sns;
+package com.gwangple.matwiki.sns.controller;
 
 public class SnsController {
 

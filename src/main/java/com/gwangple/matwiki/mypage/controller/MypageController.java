@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.mypage;
+package com.gwangple.matwiki.mypage.controller;
 
 public class MypageController {
 

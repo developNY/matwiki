@@ -11,7 +11,7 @@
 	        <property name="username" value="root" />
 	        <property name="password" value="1a2s3d4f" />
 	</bean>
-	 <bean id="sqlS0essionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	        <property name="dataSource" ref="dataSource" />
 	        <property name="mapperLocations" value="classpath:mapper/**/*.xml" />
 	 </bean>
@@ -19,7 +19,7 @@
 	        <constructor-arg ref="sqlSessionFactory" />
 	 </bean>
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	        <property name="dataSource" ref="dataSourc e"/>
+	        <property name="dataSource" ref="dataSource"/>
 	 </bean> 	
 		
 	 <bean id="homeService" class="com.gwangple.matwiki.service.HomeService"/>

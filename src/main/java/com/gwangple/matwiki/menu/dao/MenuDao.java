@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.Menu;
+package com.gwangple.matwiki.menu.dao;
 
 public class MenuDao {
 

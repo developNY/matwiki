@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.arround;
+package com.gwangple.matwiki.arround.dao;
 
 public class ArroundDao {
 

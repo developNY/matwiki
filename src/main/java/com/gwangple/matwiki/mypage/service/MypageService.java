@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.mypage;
+package com.gwangple.matwiki.mypage.service;
 
 public class MypageService {
 

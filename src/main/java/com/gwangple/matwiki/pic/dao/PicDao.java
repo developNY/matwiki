@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.pic;
+package com.gwangple.matwiki.pic.dao;
 
 public class PicDao {
 

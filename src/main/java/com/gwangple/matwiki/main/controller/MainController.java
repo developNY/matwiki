@@ -36,9 +36,9 @@ public class MainController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-
+		
 		model.addAttribute("serverTime", mainService.getList());
-
+		
 		return "main/main";
 	}
 }

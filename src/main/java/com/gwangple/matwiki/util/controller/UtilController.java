@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.util;
+package com.gwangple.matwiki.util.controller;
 
 public class UtilController {
 

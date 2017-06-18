@@ -1,4 +1,4 @@
-package com.gwangple.matwiki.common;
+package com.gwangple.matwiki.common.controller;
 
 public class CommController {
 
