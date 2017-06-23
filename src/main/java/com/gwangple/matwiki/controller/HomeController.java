@@ -36,11 +36,14 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, @RequestParam Map<String, String> map) {
-	
+		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		logger.info("test::::::::::::::::: [{}].", map.get("param"));
 		logger.info("test::::::::::::::::: [{}].", map);
+		logger.debug("log debug");
+		logger.error("log error");
+		logger.warn("log warn");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
