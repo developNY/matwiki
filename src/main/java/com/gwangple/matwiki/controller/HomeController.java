@@ -2,7 +2,6 @@ package com.gwangple.matwiki.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gwangple.matwiki.dto.HomeDto;
 import com.gwangple.matwiki.service.HomeService;
 
 /**
@@ -35,15 +35,18 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, @RequestParam Map<String, String> map) {
+	public String home(Locale locale, HomeDto homeDto) {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		logger.info("test::::::::::::::::: [{}].", map.get("param"));
-		logger.info("test::::::::::::::::: [{}].", map);
+		//logger.info("test::::::::::::::::: [{}].", map.get("param"));
+		//logger.info("test::::::::::::::::: [{}].", map);
 		logger.debug("log debug");
 		logger.error("log error");
 		logger.warn("log warn");
+		
+		//dto테스트
+		logger.info("homeDto = [{}]", homeDto.toString());
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
