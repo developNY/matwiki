@@ -39,6 +39,7 @@ public class HomeController {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
+		//파라미터 유효성 체크는 DTO 클래스에서 어노테이션 지정. HomeDto.java 참조)
 		logger.info("파라미커 체크");
 		if(bindingResult.hasErrors()){
 			logger.info("잘못된 파라미터!!");
@@ -52,7 +53,7 @@ public class HomeController {
 		logger.error("log error");
 		logger.warn("log warn");
 		
-		//dto테스트
+		//dto파라미터
 		logger.info("homeDto = [{}]", homeDto.toString());
 		
 		Date date = new Date();
