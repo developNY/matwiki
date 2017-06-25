@@ -8,7 +8,7 @@ import com.gwangple.matwiki.login.dao.LoginDao;
 
 public class LoginService {
 
-	@Resource(name="LoginDao")
+	@Resource(name="loginDao")
 	private LoginDao loginDao;
 	public void setHomeDao(LoginDao loginDao) {
 		this.loginDao = loginDao;

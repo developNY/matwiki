@@ -17,7 +17,7 @@ public class LoginDao {
 	}
 	
 	public String test() throws SQLException {
-		String testStr = query.selectOne("query.test");
+		String testStr = query.selectOne("login.login");
 		logger.info(testStr);
 		return testStr;
     }

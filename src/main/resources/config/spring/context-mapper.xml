@@ -26,4 +26,6 @@
 	 <bean id="homeDao" class="com.gwangple.matwiki.dao.HomeDao"/>
 	 <bean id="mainService" class="com.gwangple.matwiki.main.service.MainService"/>
 	 <bean id="mainDao" class="com.gwangple.matwiki.main.dao.MainDao"/>
+	 <bean id="loginService" class="com.gwangple.matwiki.login.service.LoginService"/>
+	 <bean id="loginDao" class="com.gwangple.matwiki.login.dao.LoginDao"/>
 </beans>
