@@ -31,25 +31,36 @@ public class LoginController {
 		this.loginService = loginService;
 	}
 	
+	/**
+	 * 로그인 실행
+	 * @param locale
+	 * @param loginDto
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public @ResponseBody Map<String, String> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult) {
-		
-		ModelAndView mav = new ModelAndView();
 		
 		logger.info("파라미터 체크");
 		if(bindingResult.hasErrors()){
 			
 		}
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("test", loginService.getTest());
-		
-		logger.info("데이터확인 : [{}]", map.get("test"));
-		
-		mav.setViewName("/home");
-		mav.addObject("parmaObject", map);
+		//로그인 체크
+		loginService.loginCheck(loginDto);
 		
 		return null;
 	}
+	
+	//자동로그인 기능
+	
+	//페이스북 로그인
+	
+	//아이디 찾기
+	
+	//비밀번호 찾기
+	
+	
 }

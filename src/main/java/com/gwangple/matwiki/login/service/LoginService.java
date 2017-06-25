@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.annotation.Resource;
 
 import com.gwangple.matwiki.login.dao.LoginDao;
+import com.gwangple.matwiki.login.dto.LoginDto;
 
 public class LoginService {
 
@@ -14,6 +15,10 @@ public class LoginService {
 		this.loginDao = loginDao;
 	}
 	
+	/**
+	 * 테스트
+	 * @return
+	 */
 	public String getTest(){
 		try {
 			return loginDao.test();
@@ -22,4 +27,14 @@ public class LoginService {
 			return e.getMessage();
 		}
 	}
+	
+	/**
+	 * 로그인 체크
+	 * @return
+	 */
+	public String loginCheck(LoginDto loginDto) {
+		
+		return "";
+	}
+	
 }
