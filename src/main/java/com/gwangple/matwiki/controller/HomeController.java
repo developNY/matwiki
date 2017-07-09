@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gwangple.matwiki.common.service.CommService;
 import com.gwangple.matwiki.dto.HomeDto;
 import com.gwangple.matwiki.service.HomeService;
 
@@ -30,9 +31,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Resource(name="homeService")
 	private HomeService homeService;
-	public void setHomeService(HomeService homeService) {
-		this.homeService = homeService;
-	}
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -69,7 +68,7 @@ public class HomeController {
 		logger.info("formattedDate::::::::::::::::: [{}].", formattedDate);
 		//model.addAttribute("serverTime", homeService.getTest() );
 		
-		return map;
+		return null;
 	}
 	
 	@RequestMapping(value = "/dbTest", method = RequestMethod.GET)

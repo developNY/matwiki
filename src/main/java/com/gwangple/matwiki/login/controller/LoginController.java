@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gwangple.matwiki.common.service.CommService;
+import com.gwangple.matwiki.common.utils.CommonUtils;
 import com.gwangple.matwiki.login.dto.LoginDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
@@ -29,6 +31,12 @@ public class LoginController {
 	private LoginService loginService;
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
+	}
+
+	@Resource(name="commService")
+	private CommService commService;
+	public void setCommService(CommService commService) {
+		this.commService = commService;
 	}
 	
 	/**
@@ -43,9 +51,11 @@ public class LoginController {
 		
 		logger.info("파라미터 체크");
 		if(bindingResult.hasErrors()){
-			
+			logger.info("필수파라미터 오류!!");
 		}
-		
+		String seqTest = commService.getSeqGenerator("SEQ_TEST_TABLE");
+		logger.info("시퀀스번호::[{}]",seqTest);
+	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//로그인 체크

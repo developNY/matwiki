@@ -20,24 +20,37 @@ public class CommDao {
 	}
 	
 	/**
-	 * 시퀀스
+	 * 시퀀스 등록
+	 * @param tableName
 	 * @return
 	 * @throws SQLException
 	 */
-	public String getSeqNo(String seqName) throws SQLException {
+	public int insSeqGenerator(String tableName) throws SQLException {
+		return query.insert("common.insSeqGenerator", tableName);
+	}
+	
+	/**
+	 * 시퀀스 업데이트
+	 * @param tableName
+	 * @return
+	 * @throws SQLException
+	 */
+	public int updSeqGenerator(String tableName) throws SQLException {
+		return query.update("common.setSeqGenerator", tableName);
+	}
+	
+	/**
+	 * 시퀀스 가져오기
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getSeqGenerator(String tableName) throws SQLException {
 		
 		String seqNo = null;
-		
-		if( "name1".equals(seqName) )
-		{
-			seqNo = CommonUtils.getPaddingLeft((String)query.selectOne("common.getName1SeqNo"), 10);
-		}
-		else if( "name2".equals(seqName) )
-		{
-			seqNo = CommonUtils.getPaddingLeft((String)query.selectOne("common.getName2SeqNo"), 10);
-		}
-		
+		seqNo = (String) query.selectOne("common.getSeqGenerator", tableName);
 		return seqNo;
     }
+	
+
 	
 }

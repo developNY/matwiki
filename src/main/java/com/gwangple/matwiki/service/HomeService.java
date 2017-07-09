@@ -14,7 +14,7 @@ public class HomeService {
 		this.homeDao = homeDao;
 	}
 	
-	public String getTest(){
+	public String getTest() {
 		try {
 			return homeDao.test();
 		} catch (SQLException e) {

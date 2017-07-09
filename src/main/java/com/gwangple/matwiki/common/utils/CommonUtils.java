@@ -1,12 +1,19 @@
 package com.gwangple.matwiki.common.utils;
 
-public class CommonUtils {
+import javax.annotation.Resource;
 
+import com.gwangple.matwiki.common.service.CommService;
+
+public class CommonUtils {
+	
+	@Resource(name="commService")
+	static private CommService commService;
+	
 	/**
 	 *왼쪽 패딩
 	 * @param args
 	 */
-	public static String getPaddingLeft(String str, int len) {
+	public static String getZeroPaddingLeft(String str, int len) {
 		String result = "";
 		
 		int strLen = str.length();
@@ -24,6 +31,15 @@ public class CommonUtils {
 		result = result + str; 
 		
 		return result;
+	}
+	
+	/**
+	 * 시쿼스 생성
+	 * @param tableName(생성할 시퀀스 테이블명)
+	 * @return
+	 */
+	public static String getSeqGenerator(String tableName) {
+		return getZeroPaddingLeft(commService.getSeqGenerator(tableName), 10);
 	}
 
 }

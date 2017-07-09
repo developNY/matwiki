@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="common">
-    <select id="getSeqNo" resultType="String">
-        SELECT seq.nextval 
+
+    <select id="getSeqGenerator" parameterType="String" resultType="String">
+		SELECT seq 
+		  FROM SEQ_TABLE 
+		 WHERE SEQ_NAME = #{tableName}
     </select>
+    
+    <update id="setSeqGenerator" parameterType="String">
+		UPDATE SEQ_TABLE 
+		   SET SEQ = SEQ+1,
+		       USE_DATE = CURDATE()
+		 WHERE SEQ_NAME = #{tableName}
+    </update>
+    
+    <insert id="insSeqGenerator" parameterType="String">
+		insert into SEQ_TABLE 
+		values
+		(
+		       0,
+		       #{tableName},
+			   CURDATE()
+		)
+    </insert>
+    
 </mapper>
