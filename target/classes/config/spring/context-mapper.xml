@@ -20,8 +20,8 @@
 	 </bean>
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	        <property name="dataSource" ref="dataSource"/>
-	 </bean> 	
-		
+	 </bean>
+	 
 	 <bean id="homeService" class="com.gwangple.matwiki.service.HomeService"/>
 	 <bean id="homeDao" class="com.gwangple.matwiki.dao.HomeDao"/>
 	 <bean id="mainService" class="com.gwangple.matwiki.main.service.MainService"/>
@@ -30,5 +30,4 @@
 	 <bean id="loginDao" class="com.gwangple.matwiki.login.dao.LoginDao"/>
 	 <bean id="commService" class="com.gwangple.matwiki.common.service.CommService"/>
 	 <bean id="commDao" class="com.gwangple.matwiki.common.dao.CommDao"/>
-	 
 </beans>
