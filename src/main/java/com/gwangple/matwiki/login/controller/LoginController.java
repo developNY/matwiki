@@ -1,7 +1,5 @@
 package com.gwangple.matwiki.login.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -12,15 +10,12 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.gwangple.matwiki.common.service.CommService;
-import com.gwangple.matwiki.common.utils.CommonUtils;
 import com.gwangple.matwiki.login.dto.LoginDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
@@ -47,7 +42,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public @ResponseBody Map<String, String> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult) {
+	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult) {
 		
 		logger.info("파라미터 체크");
 		if(bindingResult.hasErrors()){
@@ -58,10 +53,12 @@ public class LoginController {
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		map.put("seq", seqTest);
+		
 		//로그인 체크
 		loginService.loginCheck(loginDto);
 		
-		return null;
+		return map;
 	}
 	
 	//자동로그인 기능

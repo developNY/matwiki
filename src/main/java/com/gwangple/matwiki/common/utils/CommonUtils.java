@@ -32,14 +32,5 @@ public class CommonUtils {
 		
 		return result;
 	}
-	
-	/**
-	 * 시쿼스 생성
-	 * @param tableName(생성할 시퀀스 테이블명)
-	 * @return
-	 */
-	public static String getSeqGenerator(String tableName) {
-		return getZeroPaddingLeft(commService.getSeqGenerator(tableName), 10);
-	}
 
 }

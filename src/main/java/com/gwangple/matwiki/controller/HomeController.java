@@ -37,7 +37,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> home(Locale locale, @Valid HomeDto homeDto, BindingResult bindingResult) {
+	public String home(Locale locale, @Valid HomeDto homeDto, BindingResult bindingResult) {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -68,7 +68,7 @@ public class HomeController {
 		logger.info("formattedDate::::::::::::::::: [{}].", formattedDate);
 		//model.addAttribute("serverTime", homeService.getTest() );
 		
-		return null;
+		return "home";
 	}
 	
 	@RequestMapping(value = "/dbTest", method = RequestMethod.GET)
