@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gwangple.matwiki.common.utils.CommonUtils;
 import com.gwangple.matwiki.dao.HomeDao;
 
 public class CommDao {
