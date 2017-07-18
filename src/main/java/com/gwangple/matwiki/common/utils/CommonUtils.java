@@ -32,5 +32,31 @@ public class CommonUtils {
 		
 		return result;
 	}
+	
+	/**
+	 *왼쪽 패딩
+	 * @param args
+	 */
+	public static String getNonUserPaddingLeft(String str) {
+		String result = "";
+		String nonUser = "user";
+		int len = 6;
+		
+		int strLen = str.length();
+		
+		if(strLen >= len){
+			return nonUser + str;
+		}
+		
+		int paddingCnt = len - strLen;
+		
+		for(int i = 0; i < paddingCnt; i++){
+			result += "0";
+		}
+		
+		result = nonUser + result + str; 
+		
+		return result;
+	}
 
 }

@@ -33,7 +33,12 @@ public class CommService {
 				throw new SQLException();
 			}
 			
-			return CommonUtils.getZeroPaddingLeft(commDao.getSeqGenerator(tableName), 10);
+			if( "SEQ_NON_USER_INFO".equals(tableName) ){
+				return CommonUtils.getNonUserPaddingLeft( commDao.getSeqGenerator(tableName) );
+			}else{
+				return CommonUtils.getZeroPaddingLeft(commDao.getSeqGenerator(tableName), 10);
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
