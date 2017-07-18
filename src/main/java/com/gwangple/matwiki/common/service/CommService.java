@@ -33,6 +33,7 @@ public class CommService {
 				throw new SQLException();
 			}
 			
+			
 			if( "SEQ_NON_USER_INFO".equals(tableName) ){
 				return CommonUtils.getNonUserPaddingLeft( commDao.getSeqGenerator(tableName) );
 			}else{

@@ -1,5 +1,6 @@
 package com.gwangple.matwiki.login.controller;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -35,15 +36,18 @@ public class LoginController {
 		this.commService = commService;
 	}
 	
+	//회원가입
+	
 	/**
 	 * 로그인 실행
 	 * @param locale
 	 * @param loginDto
 	 * @param bindingResult
 	 * @return
+	 * @throws SQLException 
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult, HttpSession sess) {
+	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult, HttpSession sess) throws SQLException {
 		String sessStr = (String)sess.getAttribute("ss");
 		
 		/*
@@ -58,15 +62,12 @@ public class LoginController {
 		
 		logger.info("세션값2::[{}]"+sessStr);
 		
-		String seqTest = commService.getSeqGenerator("SEQ_TEST_TABLE");
+		String seqTest = commService.getSeqGenerator("SEQ_NON_USER_INFO");
 		logger.info("시퀀스번호::[{}]",seqTest);
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("seq", seqTest);
-		
-		//로그인 체크
-		loginService.loginCheck(loginDto);
 		
 		/*
 		 * 테스트 코드 end ========================================================================
@@ -75,13 +76,21 @@ public class LoginController {
 		//파라미터 validation check
 		if(bindingResult.hasErrors()){
 			logger.info("필수파라미터 오류!!");
+			return null;
 		}
 		
 		//아이디 패스워드 확인
+		int loginResult = loginService.loginCheck(loginDto);
+		
+		if( loginResult == 0 ){
+			
+		}else if( loginResult == 1 ){
+			
+		}else if( loginResult <= -1 ){
+			
+		}
 		
 		//일치하면 세션 설정
-		
-		
 		
 		return map;
 	}
@@ -95,6 +104,5 @@ public class LoginController {
 	//아이디 찾기
 	
 	//비밀번호 찾기
-	
 	
 }

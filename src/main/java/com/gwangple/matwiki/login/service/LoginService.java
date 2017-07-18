@@ -19,22 +19,18 @@ public class LoginService {
 	 * 테스트
 	 * @return
 	 */
-	public String getTest(){
-		try {
-			return loginDao.test();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return e.getMessage();
-		}
+	public String getTest()  throws SQLException {
+		
+		return loginDao.test();
 	}
 	
 	/**
 	 * 로그인 체크
 	 * @return
+	 * @throws SQLException 
 	 */
-	public String loginCheck(LoginDto loginDto) {
-		
-		return "";
+	public int loginCheck(LoginDto loginDto) throws SQLException {
+		return loginDao.loginCheck(loginDto);
 	}
 	
 	/**

@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gwangple.matwiki.login.dto.LoginDto;
+
 public class LoginDao {
 	private static final Logger logger = LoggerFactory.getLogger(LoginDao.class);
 	@Resource(name="sqlSession")
@@ -21,4 +23,19 @@ public class LoginDao {
 		logger.info(testStr);
 		return testStr;
     }
+	
+	/**
+	 * 로그인 체크
+	 * @return
+	 * @throws SQLException
+	 */
+	public int loginCheck(LoginDto loginDto) throws SQLException {
+		int resultCnt = query.selectOne("login.loginCheck");
+		logger.info("resultCnt::[{}]", resultCnt);
+		return resultCnt;
+    }
+	
+	//loginCheck
+	
+	
 }

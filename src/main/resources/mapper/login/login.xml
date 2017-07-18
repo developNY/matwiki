@@ -4,4 +4,13 @@
     <select id="login" resultType="String">
         SELECT 'ok'
     </select>
+    
+    <select id="loginCheck" resultType="Integer" parameterType="com.gwangple.matwiki.login.dto.LoginDto">
+    	SELECT 
+    		   COUNT(*) AS cnt 
+    	  FROM USER_INFO 
+    	 WHERE USER_ID = #{userId}
+    	   AND PWD     = #{password}
+    </select>
+    
 </mapper>
