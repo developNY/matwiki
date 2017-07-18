@@ -83,14 +83,17 @@ public class LoginController {
 		int loginResult = loginService.loginCheck(loginDto);
 		
 		if( loginResult == 0 ){
-			
+			//아이디가 없거나 패스워드가 틀립니다 
+			return null;
 		}else if( loginResult == 1 ){
-			
+			//로그인 성공
+			//세션 설정
+			//userDto로 만들어서 관리
+			return null;
 		}else if( loginResult <= -1 ){
-			
+			//오류 
+			return null;
 		}
-		
-		//일치하면 세션 설정
 		
 		return map;
 	}
