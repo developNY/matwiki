@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -42,12 +43,21 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult) {
+	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult, HttpSession sess) {
+		String sessStr = (String)sess.getAttribute("ss");
 		
-		logger.info("파라미터 체크");
-		if(bindingResult.hasErrors()){
-			logger.info("필수파라미터 오류!!");
+		/*
+		 * 테스트 코드  start ========================================================================
+		 */
+		logger.info("세션값1::[{}]"+sessStr);
+		
+		if(sessStr == null){
+			sess.setAttribute("ss", "sessSuccess!!");
+			sessStr = (String)sess.getAttribute("ss");
 		}
+		
+		logger.info("세션값2::[{}]"+sessStr);
+		
 		String seqTest = commService.getSeqGenerator("SEQ_TEST_TABLE");
 		logger.info("시퀀스번호::[{}]",seqTest);
 	
@@ -58,8 +68,25 @@ public class LoginController {
 		//로그인 체크
 		loginService.loginCheck(loginDto);
 		
+		/*
+		 * 테스트 코드 end ========================================================================
+		 */
+		
+		//파라미터 validation check
+		if(bindingResult.hasErrors()){
+			logger.info("필수파라미터 오류!!");
+		}
+		
+		//아이디 패스워드 확인
+		
+		//일치하면 세션 설정
+		
+		
+		
 		return map;
 	}
+	
+	//로그인 확인
 	
 	//자동로그인 기능
 	
