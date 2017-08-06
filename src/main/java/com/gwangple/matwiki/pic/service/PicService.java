@@ -14,7 +14,7 @@ import com.gwangple.matwiki.pic.dao.PicDao;
 import com.gwangple.matwiki.pic.dto.PicDto;
 
 /**
- * »çÁø service
+ * sì‚¬ì§„ service
  * @author sukhwan
  *
  */
@@ -24,17 +24,17 @@ public class PicService {
 	@Autowired
 	PicDao picDao;
 	
-	// ÀÌ¹ÌÁö °æ·Î
+	// ì´ë¯¸ì§€ ê²½ë¡œ
 	String imgPath = "";
 	
 	/** 
-	 * »çÁø ÀúÀå
-	 * @param picDto : »çÁø Á¤º¸
-	 * @param image  : »çÁø ÆÄÀÏ
+	 * ì‚¬ì§„ ì €ì¥
+	 * @param picDto : ì‚¬ì§„ ì •ë³´
+	 * @param image  : ì‚¬ì§„ íŒŒì¼
 	 * @throws IOException 
 	 */
 	public void insertPic(PicDto picDto,MultipartFile image) throws IOException{
-		// »çÁø ¼­¹ö¿¡ ÀúÀå
+		// ì‚¬ì§„ ì„œë²„ì— ì €ì¥
         savePic(picDto, image);
         
         
@@ -43,8 +43,8 @@ public class PicService {
 	}
 	
 	/**
-	 * »çÁø ¼­¹ö¿¡ ÀúÀå 
-	 * @param image : »çÁø ÆÄÀÏ
+	 * ì‚¬ì§„ ì„œë²„ì— ì €ì¥ 
+	 * @param image : ì‚¬ì§„ íŒŒì¼
 	 * @throws IOException 
 	 */
 	@SuppressWarnings("resource")
@@ -58,12 +58,12 @@ public class PicService {
 		fos = new FileOutputStream(path);
         fos.write(fileData);
         
-        // ÆÄÀÏ °æ·Î ¼öÁ¤
+        // íŒŒì¼ ê²½ë¡œ ìˆ˜ì •
         picDto.setPicPath(path);
 	}
 	
 	/**
-	 * ½æ³×ÀÏ ¸¸µé±â
+	 * ì¸ë„¤ì¼ ë§Œë“¤ê¸°
 	 * @param picDto
 	 * @param path
 	 */
@@ -72,18 +72,18 @@ public class PicService {
 	}
 	
 	/**
-	 * »çÁø »èÁ¦
-	 * @param picSeq : »çÁø¹øÈ£
+	 * ì‚¬ì§„ ì‚­ì œ
+	 * @param picSeq : ì‚¬ì§„ë²ˆí˜¸
 	 */
 	public void deleteImage(String picSeq){
-		// »çÁø Á¤º¸ Á¶È¸
+		// ì‚¬ì§„ ì •ë³´ ì¡°íšŒ
 		Map<String,Object> pic = picDao.selectPic(picSeq);
 		
-		// ¼­¹ö¿¡¼­ ÆÄÀÏ »èÁ¦
+		// ì„œë²„ì—ì„œ íŒŒì¼ ì‚­ì œ
 		File file = new File(pic.get("pic_path").toString());
 		file.delete();
 		
-		// »çÁø Á¤º¸ »èÁ¦
+		// ì‚¬ì§„ ì •ë³´ ì‚­ì œ
 		picDao.deletePic(picSeq);
 	}
 }

@@ -1,45 +1,45 @@
 package com.gwangple.matwiki.pic.dto;
 
 /**
- * »çÁø DTO
+ * ì‚¬ì§„ DTO
  * @author sukhwan
  *
  */
 public class PicDto {
 	/**
-	 * ¸Ş´º ¹øÈ£
+	 * ë©”ë‰´ ë²ˆí˜¸
 	 */
 	private String mnuCd;
 	/**
-	 * ¸Ş´º ¼³¸í
+	 * ë©”ë‰´ ì„¤ëª…
 	 */
 	private String picDic;
 	/**
-	 * »çÁø °æ·Î
+	 * ì‚¬ì§„ ê²½ë¡œ
 	 */
 	private String picPath;
 	/**
-	 * »çÁø ÆÄÀÏ¸í
+	 * ì‚¬ì§„ íŒŒì¼ëª…
 	 */
 	private String picFileNm;
 	/**
-	 * ¸ÀÁı °ü¸® ¹øÈ£
+	 * ë§›ì§‘ ê´€ë¦¬ ë²ˆí˜¸
 	 */
 	private String rsturtMngId;
 	/**
-	 * »ı¼ºÀÚ
+	 * ìƒì„±ì
 	 */
 	private String createId;
 	/**
-	 * ¼öÁ¤ÀÚ
+	 * ìˆ˜ì •ì
 	 */
 	private String uptId;
 	/**
-	 * »ı¼º ³¯Â¥
+	 * ìƒì„± ë‚ ì§œ
 	 */
 	private String createDt;
 	/**
-	 * ¼öÁ¤ ³¯Â¥
+	 * ìˆ˜ì • ë‚ ì§œ
 	 */
 	private String uptDt;
 	public String getMnuCd() {

@@ -12,24 +12,24 @@ import com.gwangple.matwiki.pic.dto.PicDto;
 public class PicDao extends AbstDao{
 	
 	/**
-	 * »çÁø Ãß°¡
-	 * @param picDto : »çÁø DTO
+	 * ì‚¬ì§„ ì¶”ê°€
+	 * @param picDto : ì‚¬ì§„ DTO
 	 */
 	public void insertPic(PicDto picDto){
 		this.insert("Pic.insertPic", picDto);
 	}
 	
 	/**
-	 * »çÁø ÀÌ·Â Ãß°¡
-	 * @param picDto : »çÁø DTO
+	 * ì‚¬ì§„ ì´ë ¥ ì¶”ê°€
+	 * @param picDto : ì‚¬ì§„ DTO
 	 */
 	public void insertPicHistory(PicDto picDto){
 		this.insert("Pic.insertPicHistory", picDto);
 	}
 	
 	/**
-	 * »çÁø Á¶È¸
-	 * @param picSeq : »çÁø ¹øÈ£
+	 * ì‚¬ì§„ ì¡°íšŒ
+	 * @param picSeq : ì‚¬ì§„ ë²ˆí˜¸
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -38,8 +38,8 @@ public class PicDao extends AbstDao{
 	}
 	
 	/**
-	 * »çÁø »èÁ¦
-	 * @param picSeq : »çÁø ¹øÈ£ 
+	 * ì‚¬ì§„ ì‚­ì œ
+	 * @param picSeq : ì‚¬ì§„ ë²ˆí˜¸ 
 	 */
 	public void deletePic(String picSeq){
 		this.delete("Pic.deletePic", picSeq);
