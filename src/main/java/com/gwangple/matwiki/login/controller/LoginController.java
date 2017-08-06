@@ -44,21 +44,20 @@ public class LoginController {
 	@RequestMapping(value = "/joinMembership", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> joinMembership(Locale locale, @Valid JoinMembershipDTO joinMembershipDTO, BindingResult bindingResult, HttpSession sess) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		String responseType = "";
 		//파라미터:: 회원아이디(이메일주소), 비밀번호, 비밀번호 확인, 회원 ip 주소
 		//1. 비밀번호 및 비밀번호 확인 암호화
 		//2. 암호화된 비밀번호 비교
 		//3. 아이디, 비밀번호IP저장
-		logger.info("password::[{}]", joinMembershipDTO.getPassword());
-		logger.info("passwordConfirm::[{}]", joinMembershipDTO.getPasswordConfirm());
-		String encryptPW = CommonUtils.encryptionSHA256(joinMembershipDTO.getPassword());
-		String encryptPWConfirm = CommonUtils.encryptionSHA256(joinMembershipDTO.getPasswordConfirm());
-		logger.info("암호화password::[{}]",encryptPW);
-		logger.info("암호화passwordConfirm::[{}]",encryptPWConfirm);
-		map.put("password", joinMembershipDTO.getPassword());
-		map.put("passwordConfirm", joinMembershipDTO.getPasswordConfirm());
-		map.put("passwordEncrypt", encryptPW);
-		map.put("passwordEncryptConfirm", encryptPWConfirm);
+		
+		responseType = loginService.getJoinValidationCheck(joinMembershipDTO);
+		
+		if( "0000".equals(responseType) ){
+			//회원가입
+			//loginService.insJoinMembership(joinMembershipDTO);
+		}
+		
+		map.put("responseType", responseType);
 		return map;
 	}
 	
