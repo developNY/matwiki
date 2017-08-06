@@ -16,21 +16,18 @@ public class LoginService {
 	}
 	
 	/**
-	 * 테스트
-	 * @return
-	 */
-	public String getTest()  throws SQLException {
-		
-		return loginDao.test();
-	}
-	
-	/**
 	 * 로그인 체크
 	 * @return
 	 * @throws SQLException 
 	 */
 	public int loginCheck(LoginDto loginDto) throws SQLException {
 		return loginDao.loginCheck(loginDto);
+	}
+	
+	
+	public boolean getPasswordCompare(String password, String passwordConfirm) throws SQLException {
+		
+		return true;
 	}
 	
 	/**

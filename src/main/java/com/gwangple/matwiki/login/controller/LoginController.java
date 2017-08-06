@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gwangple.matwiki.common.service.CommService;
+import com.gwangple.matwiki.common.utils.CommonUtils;
+import com.gwangple.matwiki.login.dto.JoinMembershipDTO;
 import com.gwangple.matwiki.login.dto.LoginDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
+
 @Controller
 public class LoginController {
+
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Resource(name="loginService")
 	private LoginService loginService;
@@ -37,6 +41,26 @@ public class LoginController {
 	}
 	
 	//회원가입
+	@RequestMapping(value = "/joinMembership", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> joinMembership(Locale locale, @Valid JoinMembershipDTO joinMembershipDTO, BindingResult bindingResult, HttpSession sess) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//파라미터:: 회원아이디(이메일주소), 비밀번호, 비밀번호 확인, 회원 ip 주소
+		//1. 비밀번호 및 비밀번호 확인 암호화
+		//2. 암호화된 비밀번호 비교
+		//3. 아이디, 비밀번호IP저장
+		logger.info("password::[{}]", joinMembershipDTO.getPassword());
+		logger.info("passwordConfirm::[{}]", joinMembershipDTO.getPasswordConfirm());
+		String encryptPW = CommonUtils.encryptionSHA256(joinMembershipDTO.getPassword());
+		String encryptPWConfirm = CommonUtils.encryptionSHA256(joinMembershipDTO.getPasswordConfirm());
+		logger.info("암호화password::[{}]",encryptPW);
+		logger.info("암호화passwordConfirm::[{}]",encryptPWConfirm);
+		map.put("password", joinMembershipDTO.getPassword());
+		map.put("passwordConfirm", joinMembershipDTO.getPasswordConfirm());
+		map.put("passwordEncrypt", encryptPW);
+		map.put("passwordEncryptConfirm", encryptPWConfirm);
+		return map;
+	}
 	
 	/**
 	 * 로그인 실행
@@ -53,6 +77,7 @@ public class LoginController {
 		/*
 		 * 테스트 코드  start ========================================================================
 		 */
+		
 		logger.info("세션값1::[{}]"+sessStr);
 		
 		if(sessStr == null){
@@ -79,9 +104,8 @@ public class LoginController {
 			return null;
 		}
 		
-		//아이디 패스워드 확인
+		////아이디 패스워드 확인
 		int loginResult = loginService.loginCheck(loginDto);
-		
 		if( loginResult == 0 ){
 			//아이디가 없거나 패스워드가 틀립니다 
 			return null;
@@ -102,7 +126,7 @@ public class LoginController {
 	
 	//자동로그인 기능
 	
-	//페이스북 로그인
+	//페이스북 로그인(보류)
 	
 	//아이디 찾기
 	

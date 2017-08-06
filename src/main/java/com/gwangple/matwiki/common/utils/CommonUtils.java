@@ -1,5 +1,7 @@
 package com.gwangple.matwiki.common.utils;
 
+import java.security.MessageDigest;
+
 import javax.annotation.Resource;
 
 import com.gwangple.matwiki.common.service.CommService;
@@ -57,6 +59,29 @@ public class CommonUtils {
 		result = nonUser + result + str; 
 		
 		return result;
+	}
+	
+	/**
+	 * password를 SHA-256 으로
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encryptionSHA256(String password) throws Exception {
+		
+		MessageDigest digest = MessageDigest.getInstance("SHA-256");
+		byte[] hash = digest.digest(password.getBytes("UTF-8"));
+        StringBuffer hexString = new StringBuffer();
+		
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        
+        //출력
+        System.out.println(hexString.toString());
+		return hexString.toString();
 	}
 
 }
