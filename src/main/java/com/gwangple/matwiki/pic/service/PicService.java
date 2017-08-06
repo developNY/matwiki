@@ -14,7 +14,7 @@ import com.gwangple.matwiki.pic.dao.PicDao;
 import com.gwangple.matwiki.pic.dto.PicDto;
 
 /**
- * s사진 service
+ * 사진 service
  * @author sukhwan
  *
  */
