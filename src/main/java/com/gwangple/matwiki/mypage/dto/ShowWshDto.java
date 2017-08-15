@@ -7,350 +7,288 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class ShowWshDto {
 
 	@NotEmpty
-	private String RSTURT_MNG_ID;
+	private String rsturtMngId;
 	
 	@NotEmpty
-	private String PIC_SEQ;
+	private String picSeq;
 	
 	@NotEmpty
-	private String LNG;
+	private String lng;
 	
 	@NotEmpty
-	private String LAT;
+	private String lat;
 	
 	@NotEmpty
-	private String RNK;
+	private String rnk;
 	
 	@NotEmpty
-	private String RSTURT_ID;
+	private String rsturtId;
 	
 	@NotEmpty
-	private String SIDO;
+	private String sido;
 	
 	@NotEmpty
-	private String GUGUN;
+	private String gugun;
 	
 	@NotEmpty
-	private String RI;
+	private String ri;
 	
 	@NotEmpty
-	private String DONG;
+	private String dong;
 	
 	@NotEmpty
-	private String BLDG;
+	private String bldg;
 	
 	@NotEmpty
-	private String BUNJI;
+	private String bunji;
 	
 	@NotEmpty
-	private String REW_SEQ;
+	private String rewSeq;
 	
 	@NotEmpty
-	private String REW_NM;
+	private String rewNm;
 	
 	@NotEmpty
-	private String CREATE_ID;
+	private String createId;
 	
 	@NotEmpty
-	private String ADDR_SEQ;
-	
-	
+	private String addrSeq;
 
 	/**
-	 * @return the rSTURT_MNG_ID
+	 * @return the rsturtMngId
 	 */
-	public String getRSTURT_MNG_ID() {
-		return RSTURT_MNG_ID;
+	public String getRsturtMngId() {
+		return rsturtMngId;
 	}
-
-
 
 	/**
-	 * @param rSTURT_MNG_ID the rSTURT_MNG_ID to set
+	 * @param rsturtMngId the rsturtMngId to set
 	 */
-	public void setRSTURT_MNG_ID(String rSTURT_MNG_ID) {
-		RSTURT_MNG_ID = rSTURT_MNG_ID;
+	public void setRsturtMngId(String rsturtMngId) {
+		this.rsturtMngId = rsturtMngId;
 	}
-
-
 
 	/**
-	 * @return the pIC_SEQ
+	 * @return the picSeq
 	 */
-	public String getPIC_SEQ() {
-		return PIC_SEQ;
+	public String getPicSeq() {
+		return picSeq;
 	}
-
-
 
 	/**
-	 * @param pIC_SEQ the pIC_SEQ to set
+	 * @param picSeq the picSeq to set
 	 */
-	public void setPIC_SEQ(String pIC_SEQ) {
-		PIC_SEQ = pIC_SEQ;
+	public void setPicSeq(String picSeq) {
+		this.picSeq = picSeq;
 	}
-
-
 
 	/**
-	 * @return the lNG
+	 * @return the lng
 	 */
-	public String getLNG() {
-		return LNG;
+	public String getLng() {
+		return lng;
 	}
-
-
 
 	/**
-	 * @param lNG the lNG to set
+	 * @param lng the lng to set
 	 */
-	public void setLNG(String lNG) {
-		LNG = lNG;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
-
-
 
 	/**
-	 * @return the lAT
+	 * @return the lat
 	 */
-	public String getLAT() {
-		return LAT;
+	public String getLat() {
+		return lat;
 	}
-
-
 
 	/**
-	 * @param lAT the lAT to set
+	 * @param lat the lat to set
 	 */
-	public void setLAT(String lAT) {
-		LAT = lAT;
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
-
-
 
 	/**
-	 * @return the rNK
+	 * @return the rnk
 	 */
-	public String getRNK() {
-		return RNK;
+	public String getRnk() {
+		return rnk;
 	}
-
-
 
 	/**
-	 * @param rNK the rNK to set
+	 * @param rnk the rnk to set
 	 */
-	public void setRNK(String rNK) {
-		RNK = rNK;
+	public void setRnk(String rnk) {
+		this.rnk = rnk;
 	}
-
-
 
 	/**
-	 * @return the rSTURT_ID
+	 * @return the rsturtId
 	 */
-	public String getRSTURT_ID() {
-		return RSTURT_ID;
+	public String getRsturtId() {
+		return rsturtId;
 	}
-
-
 
 	/**
-	 * @param rSTURT_ID the rSTURT_ID to set
+	 * @param rsturtId the rsturtId to set
 	 */
-	public void setRSTURT_ID(String rSTURT_ID) {
-		RSTURT_ID = rSTURT_ID;
+	public void setRsturtId(String rsturtId) {
+		this.rsturtId = rsturtId;
 	}
-
-
 
 	/**
-	 * @return the sIDO
+	 * @return the sido
 	 */
-	public String getSIDO() {
-		return SIDO;
+	public String getSido() {
+		return sido;
 	}
-
-
 
 	/**
-	 * @param sIDO the sIDO to set
+	 * @param sido the sido to set
 	 */
-	public void setSIDO(String sIDO) {
-		SIDO = sIDO;
+	public void setSido(String sido) {
+		this.sido = sido;
 	}
-
-
 
 	/**
-	 * @return the gUGUN
+	 * @return the gugun
 	 */
-	public String getGUGUN() {
-		return GUGUN;
+	public String getGugun() {
+		return gugun;
 	}
-
-
 
 	/**
-	 * @param gUGUN the gUGUN to set
+	 * @param gugun the gugun to set
 	 */
-	public void setGUGUN(String gUGUN) {
-		GUGUN = gUGUN;
+	public void setGugun(String gugun) {
+		this.gugun = gugun;
 	}
-
-
 
 	/**
-	 * @return the rI
+	 * @return the ri
 	 */
-	public String getRI() {
-		return RI;
+	public String getRi() {
+		return ri;
 	}
-
-
 
 	/**
-	 * @param rI the rI to set
+	 * @param ri the ri to set
 	 */
-	public void setRI(String rI) {
-		RI = rI;
+	public void setRi(String ri) {
+		this.ri = ri;
 	}
-
-
 
 	/**
-	 * @return the dONG
+	 * @return the dong
 	 */
-	public String getDONG() {
-		return DONG;
+	public String getDong() {
+		return dong;
 	}
-
-
 
 	/**
-	 * @param dONG the dONG to set
+	 * @param dong the dong to set
 	 */
-	public void setDONG(String dONG) {
-		DONG = dONG;
+	public void setDong(String dong) {
+		this.dong = dong;
 	}
-
-
 
 	/**
-	 * @return the bLDG
+	 * @return the bldg
 	 */
-	public String getBLDG() {
-		return BLDG;
+	public String getBldg() {
+		return bldg;
 	}
-
-
 
 	/**
-	 * @param bLDG the bLDG to set
+	 * @param bldg the bldg to set
 	 */
-	public void setBLDG(String bLDG) {
-		BLDG = bLDG;
+	public void setBldg(String bldg) {
+		this.bldg = bldg;
 	}
-
-
 
 	/**
-	 * @return the bUNJI
+	 * @return the bunji
 	 */
-	public String getBUNJI() {
-		return BUNJI;
+	public String getBunji() {
+		return bunji;
 	}
-
-
 
 	/**
-	 * @param bUNJI the bUNJI to set
+	 * @param bunji the bunji to set
 	 */
-	public void setBUNJI(String bUNJI) {
-		BUNJI = bUNJI;
+	public void setBunji(String bunji) {
+		this.bunji = bunji;
 	}
-
-
 
 	/**
-	 * @return the rEW_SEQ
+	 * @return the rewSeq
 	 */
-	public String getREW_SEQ() {
-		return REW_SEQ;
+	public String getRewSeq() {
+		return rewSeq;
 	}
-
-
 
 	/**
-	 * @param rEW_SEQ the rEW_SEQ to set
+	 * @param rewSeq the rewSeq to set
 	 */
-	public void setREW_SEQ(String rEW_SEQ) {
-		REW_SEQ = rEW_SEQ;
+	public void setRewSeq(String rewSeq) {
+		this.rewSeq = rewSeq;
 	}
-
-
 
 	/**
-	 * @return the rEW_NM
+	 * @return the rewNm
 	 */
-	public String getREW_NM() {
-		return REW_NM;
+	public String getRewNm() {
+		return rewNm;
 	}
-
-
 
 	/**
-	 * @param rEW_NM the rEW_NM to set
+	 * @param rewNm the rewNm to set
 	 */
-	public void setREW_NM(String rEW_NM) {
-		REW_NM = rEW_NM;
+	public void setRewNm(String rewNm) {
+		this.rewNm = rewNm;
 	}
-
-
 
 	/**
-	 * @return the cREATE_ID
+	 * @return the createId
 	 */
-	public String getCREATE_ID() {
-		return CREATE_ID;
+	public String getCreateId() {
+		return createId;
 	}
-
-
 
 	/**
-	 * @param cREATE_ID the cREATE_ID to set
+	 * @param createId the createId to set
 	 */
-	public void setCREATE_ID(String cREATE_ID) {
-		CREATE_ID = cREATE_ID;
+	public void setCreateId(String createId) {
+		this.createId = createId;
 	}
-
-
 
 	/**
-	 * @return the aDDR_SEQ
+	 * @return the addrSeq
 	 */
-	public String getADDR_SEQ() {
-		return ADDR_SEQ;
+	public String getAddrSeq() {
+		return addrSeq;
 	}
-
-
 
 	/**
-	 * @param aDDR_SEQ the aDDR_SEQ to set
+	 * @param addrSeq the addrSeq to set
 	 */
-	public void setADDR_SEQ(String aDDR_SEQ) {
-		ADDR_SEQ = aDDR_SEQ;
+	public void setAddrSeq(String addrSeq) {
+		this.addrSeq = addrSeq;
 	}
 
-
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "ShowWshDto [RSTURT_MNG_ID=" + RSTURT_MNG_ID + ", PIC_SEQ=" + PIC_SEQ + ", LNG=" + LNG 
-				+ ",LAT =" + LAT + ", RNK=" + RNK + ", RSTURT_ID=" + RSTURT_ID + ", SIDO=" + SIDO 
-				+ ", GUGUN=" + GUGUN + ", RI=" + RI + ", DONG=" + DONG + ", BLDG=" + BLDG + ", BUNJI=" + BUNJI
-				+ ", REW_SEQ=" + REW_SEQ + ", REW_NM=" + REW_NM + ", CREATE_ID=" + CREATE_ID
-				+ ", ADDR_SEQ=" + ADDR_SEQ + "]";
+		return "ShowWshDto [rsturtMngId=" + rsturtMngId + ", picSeq=" + picSeq + ", lng=" + lng + ", lat=" + lat
+				+ ", rnk=" + rnk + ", rsturtId=" + rsturtId + ", sido=" + sido + ", gugun=" + gugun + ", ri=" + ri
+				+ ", dong=" + dong + ", bldg=" + bldg + ", bunji=" + bunji + ", rewSeq=" + rewSeq + ", rewNm=" + rewNm
+				+ ", createId=" + createId + ", addrSeq=" + addrSeq + "]";
 	}
+	
+	
 	
 }

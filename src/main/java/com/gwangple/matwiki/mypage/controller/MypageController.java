@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gwangple.matwiki.mypage.dto.AddWshDto;
+import com.gwangple.matwiki.mypage.dto.ShowMineDto;
+import com.gwangple.matwiki.mypage.dto.ShowWshDto;
 import com.gwangple.matwiki.mypage.service.MypageService;
 
 /**
@@ -54,6 +56,48 @@ public class MypageController {
 		return map;
 	}
 	
-
+	@RequestMapping(value = "/showWsh", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> showWsh(Locale locale, @Valid ShowWshDto showWshDto, BindingResult bindingResult) {
+		
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//파라미터 유효성 체크는 DTO 클래스에서 어노테이션 지정. HomeDto.java 참조)
+		logger.info("===================showWsh==================");
+		if(bindingResult.hasErrors()){
+			logger.info("잘못된 파라미터!!");
+		}else{
+			logger.info("파라미터 ok");
+		}
+		
+		logger.info("값::{},{}");
+		
+		Map<String, Object> reult = mypageService.showWsh(showWshDto);
+		map.put("resultValue", reult);
+		return map;
+	}
+	
+	@RequestMapping(value = "/showMine", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> showMine(Locale locale, @Valid ShowMineDto showMineDto, BindingResult bindingResult) {
+		
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//파라미터 유효성 체크는 DTO 클래스에서 어노테이션 지정. HomeDto.java 참조)
+		logger.info("===================showMine==================");
+		if(bindingResult.hasErrors()){
+			logger.info("잘못된 파라미터!!");
+		}else{
+			logger.info("파라미터 ok");
+		}
+		
+		logger.info("값::{},{}");
+		
+		Map<String, Object> reult = mypageService.showMine(showMineDto);
+		map.put("resultValue", reult);
+		return map;
+	}
 	
 }
