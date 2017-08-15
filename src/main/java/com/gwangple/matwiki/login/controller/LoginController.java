@@ -1,10 +1,12 @@
 package com.gwangple.matwiki.login.controller;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gwangple.matwiki.common.service.CommService;
+import com.gwangple.matwiki.common.utils.CommonUtils;
+import com.gwangple.matwiki.login.dto.JoinMembershipDTO;
 import com.gwangple.matwiki.login.dto.LoginDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
+
 @Controller
 public class LoginController {
+
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Resource(name="loginService")
 	private LoginService loginService;
@@ -34,40 +40,104 @@ public class LoginController {
 		this.commService = commService;
 	}
 	
+	//회원가입
+	@RequestMapping(value = "/joinMembership", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> joinMembership(Locale locale, @Valid JoinMembershipDTO joinMembershipDTO, BindingResult bindingResult, HttpSession sess) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String responseType = "";
+		//파라미터:: 회원아이디(이메일주소), 비밀번호, 비밀번호 확인, 회원 ip 주소
+		//1. 비밀번호 및 비밀번호 확인 암호화
+		//2. 암호화된 비밀번호 비교
+		//3. 아이디, 비밀번호IP저장
+		
+		responseType = loginService.getJoinValidationCheck(joinMembershipDTO);
+		
+		if( "0000".equals(responseType) ){
+			//회원가입
+			//loginService.insJoinMembership(joinMembershipDTO);
+		}
+		
+		map.put("responseType", responseType);
+		return map;
+	}
+	
 	/**
 	 * 로그인 실행
 	 * @param locale
 	 * @param loginDto
 	 * @param bindingResult
 	 * @return
+	 * @throws SQLException 
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult, HttpSession sess) throws SQLException {
+		String sessStr = (String)sess.getAttribute("ss");
 		
-		logger.info("파라미터 체크");
-		if(bindingResult.hasErrors()){
-			logger.info("필수파라미터 오류!!");
+		/*
+		 * 테스트 코드  start ========================================================================
+		 */
+		
+		logger.info("세션값1::[{}]"+sessStr);
+		
+		if(sessStr == null){
+			sess.setAttribute("ss", "sessSuccess!!");
+			sessStr = (String)sess.getAttribute("ss");
 		}
-		String seqTest = commService.getSeqGenerator("SEQ_TEST_TABLE");
+		
+		logger.info("세션값2::[{}]"+sessStr);
+		
+		String seqTest = commService.getSeqGenerator("SEQ_NON_USER_INFO");
 		logger.info("시퀀스번호::[{}]",seqTest);
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("seq", seqTest);
 		
-		//로그인 체크
-		loginService.loginCheck(loginDto);
+		/*
+		 * 테스트 코드 end ========================================================================
+		 */
+		
+		//파라미터 validation check
+		if(bindingResult.hasErrors()){
+			map.put("responseCode", "999");
+			map.put("responseMsg", "필수값오류");
+			return map;
+		}
+		
+		logger.info(loginDto.toString());
+		
+		////아이디 패스워드 확인
+		int loginResult = loginService.loginCheck(loginDto);
+		logger.info("loginResult::[{}]", loginResult);
+		if( loginResult == 0 ){
+			//아이디가 없거나 패스워드가 틀립니다 
+			map.put("responseCode", "999");
+			map.put("responseMsg", "아이다가 없거나 패스워드가 틀립니다.");
+			return map;
+		}else if( loginResult == 1 ){
+			//로그인 성공
+			//세션 설정
+			//userDto로 만들어서 관리
+			map.put("responseCode", "200");
+			map.put("responseMsg", "로그인성공");
+			return map;
+		}else if( loginResult <= -1 ){
+			map.put("responseCode", "999");
+			map.put("responseMsg", "오류! 관리자문의");
+			return map;
+		}
 		
 		return map;
 	}
 	
+	//로그인 확인
+	
 	//자동로그인 기능
 	
-	//페이스북 로그인
+	//페이스북 로그인(보류)
 	
 	//아이디 찾기
 	
 	//비밀번호 찾기
-	
 	
 }

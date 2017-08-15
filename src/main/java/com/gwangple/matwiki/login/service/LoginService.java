@@ -4,7 +4,9 @@ import java.sql.SQLException;
 
 import javax.annotation.Resource;
 
+import com.gwangple.matwiki.common.utils.CommonUtils;
 import com.gwangple.matwiki.login.dao.LoginDao;
+import com.gwangple.matwiki.login.dto.JoinMembershipDTO;
 import com.gwangple.matwiki.login.dto.LoginDto;
 
 public class LoginService {
@@ -16,25 +18,45 @@ public class LoginService {
 	}
 	
 	/**
-	 * 테스트
-	 * @return
-	 */
-	public String getTest(){
-		try {
-			return loginDao.test();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return e.getMessage();
-		}
-	}
-	
-	/**
 	 * 로그인 체크
 	 * @return
+	 * @throws SQLException 
 	 */
-	public String loginCheck(LoginDto loginDto) {
+	public int loginCheck(LoginDto loginDto) throws SQLException {
+		return loginDao.loginCheck(loginDto);
+	}
+	
+	public String getJoinValidationCheck(JoinMembershipDTO joinMembershipDTO) throws Exception {
 		
-		return "";
+		String result = "";
+		String userId = joinMembershipDTO.getUserId();
+		String encryptPW = CommonUtils.encryptionSHA256(joinMembershipDTO.getPassword());
+		String encryptPWConfirm = CommonUtils.encryptionSHA256(joinMembershipDTO.getPasswordConfirm());
+		
+		if(getUserId(userId) != 0){
+			result = "0001";
+			return result;
+		}else if(getPasswordCompare(encryptPW, encryptPWConfirm)){
+			result = "0002";
+			return result;
+		}else{
+			result = "0000";
+		}
+		
+		return result;
+	}
+	
+	public int getUserId(String userId) throws SQLException {
+		int result = -1;
+		/*result = loginDao.getUserId(userId);*/
+		return result; 
+	}
+	
+	public boolean getPasswordCompare(String password, String passwordConfirm) {
+		
+		boolean result = password.equals(passwordConfirm);
+		
+		return result;
 	}
 	
 	/**

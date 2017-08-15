@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="main">
-    <select id="list" resultType="String">
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<sqlMap namespace="main">
+    <select id="list" resultType="java.util.map">
         SELECT 'list'
     </select>
-</mapper>
+    
+    <typeAlias alias="nonUserInfoForm" type="com.gwangple.matwiki.main.dto.NonUserInfoForm"/>
+    
+    <insert id="insertNonUserInfo" parameterType="nonUserInfoForm">
+		INSERT INTO (
+			IP
+			,CREATE_ID
+			,UPT_ID
+			,CREATE_DT
+			,UPT_DT
+			,NON_USER_ID
+		)VALUES (
+			 #{ip}/*IP*/
+			,#{createId}/*CREATE_ID*/
+			,#{uptId}/*UPT_ID*/
+			,#{createDt}/*CREATE_DT*/
+			,#{uptDt}/*UPT_DT*/
+			,#{nonUserId}/*NON_USER_ID*/
+		)
+    </insert>
+    
+</sqlMap>

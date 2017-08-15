@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+    
+    <select id="list_review" resultType="com.gwangple.matwiki.review.vo.ReviewVO" parameterType="com.gwangple.matwiki.review.dto.ReviewDTO">
+    
+     /* review.xml/list_review */
+    
+    	SELECT *
+    	FROM REW
+    	WHERE RSTURT_MNG_ID = #{rsturt_mng_id}
+    </select>
+    
+    <insert id="saveNew_review" parameterType="com.gwangple.matwiki.review.dto.ReviewDTO">
+    
+     /* review.xml/saveNew_review */
+     
+     INSERT 
+     INTO REW
+     (
+	     RSTURT_MNG_ID,
+	     USER_ID,
+	     REW_CONT,
+	     GRD,
+	     UPT_ID,
+	     CREATE_DT,
+	     UPT_DT
+     )
+     VALUES
+     (
+	     #{rsturt_mng_id},
+	     #{user_id},
+	     #{rew_cont},
+	     #{grd},
+	     #{user_id},
+	     Now(),
+	     Now()
+     )
+    
+    </insert>
+    
+    <update id="saveUpd_review" parameterType="com.gwangple.matwiki.review.dto.ReviewDTO">
+    
+     /* review.xml/saveUpd_review */
+     
+     UPDATE REW
+     SET
+     	REW_CONT = #{REW_CONT},
+     	GRD = #{GRD},
+     	UPT_ID = #{user_id}, 
+     	UPT_DT = Now()
+     WHERE REW_SEQ = #{rew_seq}
+     AND   rsturt_mng_id = #{rsturt_mng_id}
+    
+    </update>
+    
+</mapper>
