@@ -41,7 +41,7 @@ public class LoginController {
 	}
 	
 	//회원가입
-	@RequestMapping(value = "/joinMembership", method = RequestMethod.GET)
+	@RequestMapping(value = "/joinMembership", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> joinMembership(Locale locale, @Valid JoinMembershipDTO joinMembershipDTO, BindingResult bindingResult, HttpSession sess) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String responseType = "";
@@ -69,7 +69,7 @@ public class LoginController {
 	 * @return
 	 * @throws SQLException 
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> login(Locale locale, @Valid LoginDto loginDto, BindingResult bindingResult, HttpSession sess) throws SQLException {
 		String sessStr = (String)sess.getAttribute("ss");
 		
@@ -99,23 +99,32 @@ public class LoginController {
 		
 		//파라미터 validation check
 		if(bindingResult.hasErrors()){
-			logger.info("필수파라미터 오류!!");
-			return null;
+			map.put("responseCode", "999");
+			map.put("responseMsg", "필수값오류");
+			return map;
 		}
+		
+		logger.info(loginDto.toString());
 		
 		////아이디 패스워드 확인
 		int loginResult = loginService.loginCheck(loginDto);
+		logger.info("loginResult::[{}]", loginResult);
 		if( loginResult == 0 ){
 			//아이디가 없거나 패스워드가 틀립니다 
-			return null;
+			map.put("responseCode", "999");
+			map.put("responseMsg", "아이다가 없거나 패스워드가 틀립니다.");
+			return map;
 		}else if( loginResult == 1 ){
 			//로그인 성공
 			//세션 설정
 			//userDto로 만들어서 관리
-			return null;
+			map.put("responseCode", "200");
+			map.put("responseMsg", "로그인성공");
+			return map;
 		}else if( loginResult <= -1 ){
-			//오류 
-			return null;
+			map.put("responseCode", "999");
+			map.put("responseMsg", "오류! 관리자문의");
+			return map;
 		}
 		
 		return map;
