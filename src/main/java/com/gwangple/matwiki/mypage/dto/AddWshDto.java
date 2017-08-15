@@ -1,79 +1,66 @@
 package com.gwangple.matwiki.mypage.dto;
 
-import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class AddWshDto {
 
 	@NotEmpty
-	private String USER_ID;
+	private String userId;//userId
 	
 	@NotEmpty
-	private String RSTURT_MNG_ID;
+	private String rsturtMngId;//rsturtMngId
 	
 	@NotEmpty
-	private String CREATE_DT;
-	
-	
+	private String createDt;//createDt
 
 	/**
-	 * @return the uSER_ID
+	 * @return the userId
 	 */
-	public String getUSER_ID() {
-		return USER_ID;
+	public String getUserId() {
+		return userId;
 	}
-
-
 
 	/**
-	 * @param uSER_ID the uSER_ID to set
+	 * @param userId the userId to set
 	 */
-	public void setUSER_ID(String uSER_ID) {
-		USER_ID = uSER_ID;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-
-
 
 	/**
-	 * @return the rSTURT_MNG_ID
+	 * @return the rsturtMngId
 	 */
-	public String getRSTURT_MNG_ID() {
-		return RSTURT_MNG_ID;
+	public String getRsturtMngId() {
+		return rsturtMngId;
 	}
-
-
 
 	/**
-	 * @param rSTURT_MNG_ID the rSTURT_MNG_ID to set
+	 * @param rsturtMngId the rsturtMngId to set
 	 */
-	public void setRSTURT_MNG_ID(String rSTURT_MNG_ID) {
-		RSTURT_MNG_ID = rSTURT_MNG_ID;
+	public void setRsturtMngId(String rsturtMngId) {
+		this.rsturtMngId = rsturtMngId;
 	}
-
-
 
 	/**
-	 * @return the cREATE_DT
+	 * @return the createDt
 	 */
-	public String getCREATE_DT() {
-		return CREATE_DT;
+	public String getCreateDt() {
+		return createDt;
 	}
-
-
 
 	/**
-	 * @param cREATE_DT the cREATE_DT to set
+	 * @param createDt the createDt to set
 	 */
-	public void setCREATE_DT(String cREATE_DT) {
-		CREATE_DT = cREATE_DT;
+	public void setCreateDt(String createDt) {
+		this.createDt = createDt;
 	}
 
-
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "AddWshDto [USER_ID=" + USER_ID + ", RSTURT_MNG_ID=" + RSTURT_MNG_ID + ", CREATE_DT=" + CREATE_DT +"]";
+		return "AddWshDto [userId=" + userId + ", rsturtMngId=" + rsturtMngId + ", createDt=" + createDt + "]";
 	}
 	
 }

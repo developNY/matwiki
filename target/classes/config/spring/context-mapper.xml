@@ -30,4 +30,6 @@
 	 <bean id="loginDao" class="com.gwangple.matwiki.login.dao.LoginDao"/>
 	 <bean id="commService" class="com.gwangple.matwiki.common.service.CommService"/>
 	 <bean id="commDao" class="com.gwangple.matwiki.common.dao.CommDao"/>
+	 <bean id="mypageService" class="com.gwangple.matwiki.mypage.service.MypageService"/>
+	 <bean id="mypageDao" class="com.gwangple.matwiki.mypage.dao.MypageDao"/>
 </beans>

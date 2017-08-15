@@ -1,20 +1,22 @@
 package com.gwangple.matwiki.mypage.service;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gwangple.matwiki.mypage.dao.MypageDao;
+import com.gwangple.matwiki.mypage.dto.AddWshDto;
 import com.gwangple.matwiki.mypage.utils.MypageUtils;
 
 public class MypageService {
 	
-	@Resource(name="MypageDao")
-	private MypageDao MypageDao;
-	public void setMypageDao(MypageDao MypageDao) {
-		this.MypageDao = MypageDao;
+	@Resource(name="mypageDao")
+	private MypageDao mypageDao;
+	public void setMypageDao(MypageDao mypageDao) {
+		this.mypageDao = mypageDao;
 	}
 	
 	/**
@@ -23,22 +25,18 @@ public class MypageService {
 	 * @return
 	 */
 	@Transactional
-	public String getSeqGenerator(String wsh){
+	public int writeWsh(AddWshDto addWshDto){
 		int result = 0;
 		try {
-			//기존시퀀스 업데이트
-			result = MypageDao.writeWsh(wsh);
 			
-			//시퀀스가 없을때 강제 익셉션
-			if(1 != result){
-				throw new SQLException();
-			}
+			result = mypageDao.writeWsh(addWshDto);
 			
-			return MypageUtils.getZeroPaddingLeft(MypageDao.getSeqGenerator(wsh), 10);
+			return result;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return e.getMessage();
+			e.printStackTrace();
+			return -1;
 		}
 	}
 }

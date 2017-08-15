@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<select id="showWsh" parameterClass="com.gwangple.matwiki.mypage.dto.ShowWshDto">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+<select id="showWsh" parameterType="com.gwangple.matwiki.mypage.dto.ShowWshDto">
  <![CDATA[
       SELECT 
  		 PIC.RSTURT_MNG_ID 
@@ -42,7 +44,7 @@
 ]]>
 </select>
 
-<select id="showMine" parameterClass="com.gwangple.matwiki.mypage.dto.ShowMineDto">
+<select id="showMine" parameterType="com.gwangple.matwiki.mypage.dto.ShowMineDto">
  <![CDATA[
       SELECT 
   		PIC.RSTURT_MNG_ID 
@@ -85,19 +87,19 @@
 ]]>
 </select>
 
-<insert id="addWsh" parameterClass="com.gwangple.matwiki.mypage.dto.AddWshDto">
+<insert id="addWsh" parameterType="com.gwangple.matwiki.mypage.dto.AddWshDto">
  <![CDATA[
       INSERT
-	  INTO WSH(USER_ID, RSTURT_MNG_ID, CREATE_DT)
-	  VALUES(userId, rsturtMngId, CURDATE());
+	  INTO WSH(USER_ID, RSTURT_MNG_ID, CREATE_DT, UPT_DT)
+	  VALUES(#{userId}, #{rsturtMngId}, CURDATE(), CURDATE());
 ]]>
 </insert>
 
-<delete id="delWsh" parameterClass="com.gwangple.matwiki.mypage.dto.DelWshDto">
+<delete id="delWsh" parameterType="com.gwangple.matwiki.mypage.dto.DelWshDto">
  <![CDATA[
       DELETE FROM WSH
 	   WHERE USER_ID = #{user_Id}
                AND RSTURT_MNG_ID = #{rsturt_Mng_Id};
 ]]>
 </delete>
-</sqlMap>
+</mapper>
