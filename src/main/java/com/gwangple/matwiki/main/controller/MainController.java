@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gwangple.matwiki.main.dto.NonUserInfoForm;
+import com.gwangple.matwiki.main.dto.RsturtInfoForm;
 import com.gwangple.matwiki.main.service.MainService;
 
 @Controller
@@ -39,6 +42,17 @@ public class MainController {
 		
 		model.addAttribute("serverTime", mainService.getList());
 		
-		return "main/main";
+		return "main";
 	}
+	
+	
+	@RequestMapping(value = "/createResturant", method = RequestMethod.POST)
+	public String createResturant(HttpSession httpSession, Model model, 
+			RsturtInfoForm rsturtInfoForm) {
+		logger.debug("telNo : ",rsturtInfoForm.getTelNo());
+		//비회원 입력
+		mainService.insertResturant(httpSession, model, rsturtInfoForm);
+		return "main";
+	}   	
+	
 }

@@ -9,9 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gwangple.matwiki.dao.HomeDao;
+import com.gwangple.matwiki.main.dto.NonUserInfoForm;
 
 public class MainDao {
-	private static final Logger logger = LoggerFactory.getLogger(HomeDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainDao.class);
 	@Resource(name="sqlSession")
 	private SqlSession query;
 	public void setQuery(SqlSession query) {
@@ -23,4 +24,8 @@ public class MainDao {
 		logger.info(list);
 		return list;
     }
+	
+	public void insertNonUserInfo(NonUserInfoForm nonUserInfoForm){
+		query.insert("main.insertNonUserInfoForm", nonUserInfoForm);
+	}
 }
