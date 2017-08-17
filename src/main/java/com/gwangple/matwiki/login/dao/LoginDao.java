@@ -30,8 +30,7 @@ public class LoginDao {
 	 * @throws SQLException
 	 */
 	public int loginCheck(LoginDto loginDto) throws SQLException {
-		int resultCnt = query.selectOne("login.loginCheck");
-		logger.info("resultCnt::[{}]", resultCnt);
+		int resultCnt = query.selectOne("login.loginCheck", loginDto);
 		return resultCnt;
     }
 	

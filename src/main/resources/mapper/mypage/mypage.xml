@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+<select id="showWsh" resultType="java.util.Map" parameterType="com.gwangple.matwiki.mypage.dto.ShowWshDto">
+ <![CDATA[
+      SELECT 
+ 		 PIC.RSTURT_MNG_ID 
+		 , PIC.PIC_SEQ 
+ 		 , MAP.LNG
+ 		 , MAP.LAT 
+		 , RST.RNK 
+		 , (SELECT 
+		 		RSTURT_ID 
+		 	FROM 
+		 		RSTURT_CD_DATA RST_CD 
+		 	WHERE 
+		 		RST_CD.RSTURT_ID = RST.RSTURT_ID
+		 	) AS RST_NM 
+		 , ADDR.SIDO
+		 , ADDR.GUGUN
+		 , ADDR.RI
+		 , ADDR.DONG
+		 , ADDR.BLDG
+		 , ADDR.BUNJI
+		 , (SELECT 
+		 		COUNT(DISTINCT REW_SEQ) 
+		 	FROM 
+		 		REW REW 
+		 	WHERE 
+		 		REW.RSTURT_MNG_ID = RST.RSTURT_MNG_ID
+		 	) AS REW_NM
+		FROM
+			RSTURT_INFO RST 
+  		INNER JOIN PIC PIC
+ 		     ON PIC.RSTURT_MNG_ID = RST.RSTURT_MNG_ID 
+ 		INNER JOIN WSH WSH 
+ 		     ON WSH.RSTURT_MNG_ID = RST.RSTURT_MNG_ID
+		INNER JOIN MAP MAP 
+		     ON MAP.RSTURT_MNG_ID = RST.RSTURT_MNG_ID
+ 		INNER JOIN ADDR ADDR 
+ 		     ON RST.ADDR_SEQ = ADDR.ADDR_SEQ
+ 		WHERE 
+ 			 WSH.USER_ID = #{create_id};
+]]>
+</select>
+
+<select id="showMine" parameterType="com.gwangple.matwiki.mypage.dto.ShowMineDto">
+ <![CDATA[
+      SELECT 
+  		PIC.RSTURT_MNG_ID 
+ 		, PIC.PIC_SEQ 
+ 		, MAP.LNG
+ 		, MAP.LAT 
+ 		, RST.RNK 
+ 		, (SELECT 
+ 				RSTURT_ID 
+ 		   FROM 
+ 		   		RSTURT_CD_DATA RST_CD 
+ 		   WHERE 
+ 		   		RST_CD.RSTURT_ID = RST.RSTURT_ID
+ 		   ) AS RST_NM 
+ 		, ADDR.SIDO
+	 	, ADDR.GUGUN
+ 		, ADDR.RI
+ 		, ADDR.DONG
+ 		, ADDR.BLDG
+ 		, ADDR.BUNJI -- ADDR
+ 		, (SELECT 
+ 				COUNT(DISTINCT REW_SEQ) 
+ 		   FROM 
+ 		   		REW REW 
+ 		   WHERE 
+ 		   		REW.RSTURT_MNG_ID = RST.RSTURT_MNG_ID
+ 		   ) AS REW_NM 
+	  FROM
+		  RSTURT_INFO RST 
+  	  INNER JOIN PIC PIC
+      	  ON PIC.RSTURT_MNG_ID = RST.RSTURT_MNG_ID 
+  	  INNER JOIN MAP MAP 
+      	  ON MAP.RSTURT_MNG_ID = RST.RSTURT_MNG_ID 
+  	  INNER JOIN ADDR ADDR 
+          ON RST.ADDR_SEQ = ADDR.ADDR_SEQ
+  	  WHERE 
+  	  	  RST.CREATE_ID = #{create_id};
+]]>
+</select>
+
+<insert id="addWsh" parameterType="com.gwangple.matwiki.mypage.dto.AddWshDto">
+ <![CDATA[
+      INSERT
+	  INTO WSH(USER_ID, RSTURT_MNG_ID, CREATE_DT, UPT_DT)
+	  VALUES(#{userId}, #{rsturtMngId}, CURDATE(), CURDATE());
+]]>
+</insert>
+
+<delete id="delWsh" parameterType="com.gwangple.matwiki.mypage.dto.DelWshDto">
+ <![CDATA[
+      DELETE FROM WSH
+	   WHERE USER_ID = #{user_Id}
+               AND RSTURT_MNG_ID = #{rsturt_Mng_Id};
+]]>
+</delete>
+</mapper>
