@@ -43,14 +43,14 @@ public class MainController {
 		model.addAttribute("serverTime", mainService.getList());
 		
 		return "main";
-	}
+	} 
 	
 	
 	@RequestMapping(value = "/createResturant", method = RequestMethod.POST)
 	public String createResturant(HttpSession httpSession, Model model, 
 			RsturtInfoForm rsturtInfoForm) {
 		logger.debug("telNo : ",rsturtInfoForm.getTelNo());
-		//ë¹„íšŒì› ì…ë ¥
+		//ºñÈ¸¿ø ÀÔ·Â
 		mainService.insertResturant(httpSession, model, rsturtInfoForm);
 		return "main";
 	}   	
