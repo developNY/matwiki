@@ -1,6 +1,9 @@
 package com.gwangple.matwiki.main.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,4 +31,18 @@ public class MainDao {
 	public void insertNonUserInfo(NonUserInfoForm nonUserInfoForm){
 		query.insert("main.insertNonUserInfoForm", nonUserInfoForm);
 	}
+	
+	/**
+	 * 랭킹 불러오기
+	 * @return
+	 * @throws SQLException
+	 */
+	 public Map<String, Object> getListRanking()throws SQLException {
+		
+		 List<Map<String, Object>> list = query.selectList("main.getListRanking");
+		 
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("list", list); 
+		 return map;
+	 }
 }

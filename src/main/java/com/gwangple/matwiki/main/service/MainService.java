@@ -1,5 +1,8 @@
 package com.gwangple.matwiki.main.service;
 
+import java.sql.SQLException;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -37,10 +40,19 @@ public class MainService {
 	public void insertResturant(HttpSession httpSession, Model model, RsturtInfoForm rsturtInfoForm){
 		NonUserInfoForm nonUserInfoForm = new NonUserInfoForm();
 		nonUserInfoForm.setIp("");
-		//비회원 입력
+		//鍮꾪쉶�썝 �엯�젰
 		mainDao.insertNonUserInfo(nonUserInfoForm);
-		//채번 
+		//梨꾨쾲 
 		String seqNo = commService.getSeqGenerator("RSTURT_CREID_MNG");
 		
+	}
+	
+	/**
+	 * 랭킹 불러오기
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> getListRanking() throws SQLException{
+		return mainDao.getListRanking();		
 	}
 }
