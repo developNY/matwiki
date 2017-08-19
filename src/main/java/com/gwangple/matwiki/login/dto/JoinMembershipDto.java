@@ -1,8 +1,14 @@
 package com.gwangple.matwiki.login.dto;
 
-public class JoinMembershipDTO {
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class JoinMembershipDto {
+    
+    @NotEmpty
 	private String userId;
+    @NotEmpty
 	private String password;
+    @NotEmpty
 	private String passwordConfirm;
 	private String ipAddr;
 	

@@ -1,40 +1,70 @@
 package com.gwangple.matwiki.login.dao;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import com.gwangple.matwiki.common.dto.UserInfoDto;
+import com.gwangple.matwiki.login.dto.JoinMembershipDto;
 import com.gwangple.matwiki.login.dto.LoginDto;
 
 public class LoginDao {
-	private static final Logger logger = LoggerFactory.getLogger(LoginDao.class);
+    
 	@Resource(name="sqlSession")
 	private SqlSession query;
 	public void setQuery(SqlSession query) {
 		this.query = query;
 	}
 	
-	public String test() throws SQLException {
-		String testStr = query.selectOne("login.login");
-		logger.info(testStr);
-		return testStr;
-    }
-	
 	/**
 	 * 로그인 체크
 	 * @return
 	 * @throws SQLException
 	 */
-	public int loginCheck(LoginDto loginDto) throws SQLException {
-		int resultCnt = query.selectOne("login.loginCheck", loginDto);
-		return resultCnt;
+	public Map<String, Object> loginCheck(LoginDto loginDto) throws SQLException {
+		return query.selectOne("login.loginCheck", loginDto);
     }
 	
-	//loginCheck
+	/**
+	 * 등록된 ID 유무 확인
+	 * @param userId
+	 * @return "Y" or "N"
+	 * @throws SQLException
+	 */
+	public String getUserIdYn(String userId) throws SQLException {
+        return query.selectOne("login.getUserIdYn", userId);
+	}
 	
+	/**
+	 * 회원가입
+	 * @param joinMembershipDTO
+	 * @return 1 : true
+	 * @throws SQLException
+	 */
+	public int insJoinMembership(JoinMembershipDto joinMembershipDto) throws SQLException {
+	    return query.insert("login.insJoinMembership", joinMembershipDto);
+	}
 	
+	/**
+	 * 비회원정보를 저장한다
+	 * @param userInfoDto
+	 * @return
+	 * @throws SQLException
+	 */
+	public int setNonUserInfo(UserInfoDto userInfoDto) throws SQLException {
+	    return query.insert("login.setNonUserInfo", userInfoDto);
+	}
+	
+	/**
+	 * 비회원정보를 가져온다
+	 * @param ipAddr
+	 * @return
+	 * @throws SQLException
+	 */
+    public UserInfoDto getNonUserInfo(String ipAddr) throws SQLException {
+        return query.selectOne("login.getNonUserInfo", ipAddr);
+    }
 }
