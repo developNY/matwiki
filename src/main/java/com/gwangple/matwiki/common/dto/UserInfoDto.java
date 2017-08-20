@@ -1,6 +1,6 @@
 package com.gwangple.matwiki.common.dto;
 
-public class UserInfoDto {
+public class UserInfoDto { 
 
     private String userId;
     private String ipAddr;

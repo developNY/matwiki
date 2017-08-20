@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gwangple.matwiki.common.service.CommService;
 import com.gwangple.matwiki.common.utils.CommonUtils;
-import com.gwangple.matwiki.login.dto.JoinMembershipDto;
 import com.gwangple.matwiki.login.dto.LoginDto;
+import com.gwangple.matwiki.login.dto.JoinMembershipDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
 @Controller
