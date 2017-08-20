@@ -1,0 +1,1 @@
+import { Injectable } from "@angular/core"import { routesConfig, modalsConfig } from './app-route.config';import { AppRoutes, AppTriggerModel } from "./app-route.model"@Injectable()export class AppRouteService {  constructor() {}  getRouteConfig(): AppRoutes {    return routesConfig;  }  getModalConfig(): AppTriggerModel {    return modalsConfig;  }}

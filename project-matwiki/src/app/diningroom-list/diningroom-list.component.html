@@ -1,0 +1,17 @@
+<div class="card"  *ngFor="let diningRoom of diningRoomList; let i = index">
+  <span class="rank">{{i + 1}}위</span>
+  <div class="card-profile">
+    <img src="/assets/test.jpg">
+    <span class=""></span>
+  </div>
+
+  <div class="card-content">
+    <span class="content">랭크: {{i + 1}}</span>
+    <span class="content">카테고리 : {{ diningRoom.MAIN_EDF }}</span>
+    <div class="card-item-list">
+      <span class="tw-btn-clear card-item waves-effect" data-wave-color="black"><i class="fa fa-map-marker" aria-hidden="true"></i>지도</span>
+      <span class="tw-btn-clear card-item">리뷰 N건</span>
+    </div>
+  </div>
+</div>
+
