@@ -23,7 +23,7 @@ public class MypageService {
 	}
 	
 	/**
-	 * ½ÃÄö½º °¡Á®¿À±â
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param tableName
 	 * @return
 	 */
@@ -44,7 +44,7 @@ public class MypageService {
 	}
 	
 	/**
-	 * ½ÃÄö½º °¡Á®¿À±â
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param tableName
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class MypageService {
 	}
 	
 	/**
-	 * ½ÃÄö½º °¡Á®¿À±â
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param tableName
 	 * @return
 	 */

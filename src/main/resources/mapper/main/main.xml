@@ -2,14 +2,19 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<sqlMap namespace="main">
-    <select id="list" resultType="java.util.map">
+<mapper namespace="main">
+	<select id="getListRanking" resultType="java.util.Map">
+        SELECT RSTURT_ID as rsturtId
+             , ADDR      as addr 
+          FROM RSTURT_INFO 
+    </select>
+
+    <select id="list" resultType="hashmap">
         SELECT 'list'
     </select>
     
-    <typeAlias alias="nonUserInfoForm" type="com.gwangple.matwiki.main.dto.NonUserInfoForm"/>
-    
-    <insert id="insertNonUserInfo" parameterType="nonUserInfoForm">
+    <insert id="insertNonUserInfo" parameterType="com.gwangple.matwiki.main.dto.NonUserInfoForm">
+    /*main.insertNonUserInfo*/
 		INSERT INTO (
 			IP
 			,CREATE_ID
@@ -17,7 +22,7 @@
 			,CREATE_DT
 			,UPT_DT
 			,NON_USER_ID
-		)VALUES (
+		) VALUES (
 			 #{ip}/*IP*/
 			,#{createId}/*CREATE_ID*/
 			,#{uptId}/*UPT_ID*/
@@ -27,4 +32,35 @@
 		)
     </insert>
     
-</sqlMap>
+    <insert id="insertRsturtCreidMng" parameterType="com.gwangple.matwiki.main.dto.RsturtCreidMngForm">
+    	/*main.*/
+    	INSERT INTO RSTURT_CREID_MNG(
+			 RSTURT_MNG_ID
+			,RSTURT_NM
+			,ADDR
+			,RSTURT_ID
+			,TEL1
+			,TEL2
+			,TEL3
+			,TEL
+			,CREATE_ID
+			,UPT_ID
+			,CREATE_DT
+			,UPT_DT
+		)VALUES (
+			 #{rsturtMngId}/*RSTURT_MNG_ID*/
+			,#{rsturtNm}/*RSTURT_NM*/
+			,#{addr}/*ADDR*/
+			,#{rsturtId}/*RSTURT_ID*/
+			,#{tel1}/*TEL1*/
+			,#{tel2}/*TEL2*/
+			,#{tel3}/*TEL3*/
+			,#{tel}/*TEL*/
+			,#{createId}/*CREATE_ID*/
+			,#{uptId}/*UPT_ID*/
+			,#{createDt}/*CREATE_DT*/
+			,#{uptDt}/*UPT_DT*/
+		)
+    </insert>
+    
+</mapper>

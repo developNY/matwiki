@@ -17,7 +17,7 @@ import com.gwangple.matwiki.mypage.dto.ShowWshDto;
 
 /**
  * 20`7.08.15
- * @author ¼­Çö¾Æ
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class MypageDao {

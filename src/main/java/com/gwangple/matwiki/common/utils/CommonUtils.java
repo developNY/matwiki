@@ -1,15 +1,22 @@
 package com.gwangple.matwiki.common.utils;
 
 import java.security.MessageDigest;
+import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-import com.gwangple.matwiki.common.service.CommService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.gwangple.matwiki.login.controller.LoginController;
 
 public class CommonUtils {
-	
-	@Resource(name="commService")
-	static private CommService commService;
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
 	 *왼쪽 패딩
@@ -79,9 +86,39 @@ public class CommonUtils {
             hexString.append(hex);
         }
         
-        //출력
-        System.out.println(hexString.toString());
 		return hexString.toString();
 	}
-
+	
+	/**
+	 * 클라이언트 ip주소를 호출합니다.
+	 * @return String
+	 */
+	public static String getIpAddr() {
+        
+        HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest(); 
+        String ip = null;
+        
+        //웹서버 통해 들어올 경우
+        ip = req.getHeader("X-FORWARDED-FOR");
+        
+        if (ip == null)
+            ip = req.getRemoteAddr();
+	    
+	    return ip;
+    }
+	
+	/**
+	 * 파리미터 검증 오류시 오류코드 set
+	 * @param bindingResult
+	 * @param map
+	 */
+	public static void setErrValid(BindingResult bindingResult, Map<String, Object> map) {
+        
+	    List<ObjectError> errors = bindingResult.getAllErrors();
+        for(ObjectError error : errors) {
+            logger.info("error:[{}]", error.getDefaultMessage());
+        }
+        
+        map.put("responseCode", "9999");
+    }
 }

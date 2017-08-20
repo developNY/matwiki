@@ -41,15 +41,15 @@ public class MypageController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//ÆÄ¶ó¹ÌÅÍ À¯È¿¼º Ã¼Å©´Â DTO Å¬·¡½º¿¡¼­ ¾î³ëÅ×ÀÌ¼Ç ÁöÁ¤. HomeDto.java ÂüÁ¶)
+		//ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ DTO Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½. HomeDto.java ï¿½ï¿½ï¿½ï¿½)
 		logger.info("===================writeWsh==================");
 		if(bindingResult.hasErrors()){
-			logger.info("Àß¸øµÈ ÆÄ¶ó¹ÌÅÍ!!");
+			logger.info("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½!!");
 		}else{
-			logger.info("ÆÄ¶ó¹ÌÅÍ ok");
+			logger.info("ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ok");
 		}
 		
-		logger.info("°ª::{},{}");
+		logger.info("ï¿½ï¿½::{},{}");
 		
 		int reult = mypageService.writeWsh(addWshDto);
 		map.put("resultValue", reult);
@@ -63,15 +63,15 @@ public class MypageController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//ÆÄ¶ó¹ÌÅÍ À¯È¿¼º Ã¼Å©´Â DTO Å¬·¡½º¿¡¼­ ¾î³ëÅ×ÀÌ¼Ç ÁöÁ¤. HomeDto.java ÂüÁ¶)
+		//ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ DTO Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½. HomeDto.java ï¿½ï¿½ï¿½ï¿½)
 		logger.info("===================showWsh==================");
 		if(bindingResult.hasErrors()){
-			logger.info("Àß¸øµÈ ÆÄ¶ó¹ÌÅÍ!!");
+			logger.info("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½!!");
 		}else{
-			logger.info("ÆÄ¶ó¹ÌÅÍ ok");
+			logger.info("ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ok");
 		}
 		
-		logger.info("°ª::{},{}");
+		logger.info("ï¿½ï¿½::{},{}");
 		
 		Map<String, Object> reult = mypageService.showWsh(showWshDto);
 		map.put("resultValue", reult);
@@ -85,15 +85,15 @@ public class MypageController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//ÆÄ¶ó¹ÌÅÍ À¯È¿¼º Ã¼Å©´Â DTO Å¬·¡½º¿¡¼­ ¾î³ëÅ×ÀÌ¼Ç ÁöÁ¤. HomeDto.java ÂüÁ¶)
+		//ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ DTO Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½. HomeDto.java ï¿½ï¿½ï¿½ï¿½)
 		logger.info("===================showMine==================");
 		if(bindingResult.hasErrors()){
-			logger.info("Àß¸øµÈ ÆÄ¶ó¹ÌÅÍ!!");
+			logger.info("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½!!");
 		}else{
-			logger.info("ÆÄ¶ó¹ÌÅÍ ok");
+			logger.info("ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ok");
 		}
 		
-		logger.info("°ª::{},{}");
+		logger.info("ï¿½ï¿½::{},{}");
 		
 		Map<String, Object> reult = mypageService.showMine(showMineDto);
 		map.put("resultValue", reult);

@@ -2,6 +2,7 @@ package com.gwangple.matwiki.login.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+
 public class LoginDto {
 	
 	@NotEmpty
