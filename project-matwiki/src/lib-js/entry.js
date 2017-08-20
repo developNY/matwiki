@@ -1,0 +1,9 @@
+require("../lib-js/test-js/lib/hammer");
+require('../lib-js/test-js/global');
+require("../lib-js/test-js/animate");
+require('../lib-js/test-js/input-field');
+require('../lib-js/test-js/modal');
+require('../lib-js/test-js/waves');
+require('../lib-js/test-js/sidenav');
+require('../lib-js/test-js/slide');
+require("../lib-js/test-js/pushpin");

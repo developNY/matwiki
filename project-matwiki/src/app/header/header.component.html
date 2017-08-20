@@ -1,0 +1,23 @@
+
+  <div class="tw-navbar white" >
+    <ul class="container">
+      <li *ngFor="let route of routeConfig" [ngClass]="route.mwClass" [routerLink]="[route.path]">{{route.mwText}}</li>
+      <li *ngFor="let trigger of modalConfig" [ngClass]="trigger.mwClass" [innerHTML]="trigger.mwHTML">{{trigger.mwText}}</li>
+    </ul>
+  </div>
+  <div class="local-search-container card row" [ngClass]="{ 'close': !localSearch, 'open': localSearch }">
+      <button class="col s6 tw-btn-clear waves-effect local-search-btn" data-wave-color="black"><i class="fa fa-map-marker" aria-hidden="true"></i>지역 검색</button>
+      <button class="col s6 tw-btn-clear waves-effect around-search-btn" data-wave-color="black"><i class="fa fa-map-marker" aria-hidden="true"></i>내 주변 검색</button>
+    <div class="local-search-trigger white card" (click)="setLocalSearch(localSearch ? false : true)" ><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+  </div>
+
+
+  <mw-modal id="modal">
+    <div class="modal">
+      <div class="modal-content">
+        testModal
+      </div>
+      <div class="modal-action">
+      </div>
+    </div>
+  </mw-modal>
