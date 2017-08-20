@@ -15,7 +15,7 @@
           FROM USER_INFO A
          WHERE A.USER_ID = #{userId}
     </select>
-    
+
     <insert id="insJoinMembership" parameterType="com.gwangple.matwiki.login.dto.JoinMembershipDto">
         INSERT INTO USER_INFO
               (USER_ID

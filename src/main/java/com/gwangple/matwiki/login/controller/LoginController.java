@@ -25,6 +25,7 @@ import com.gwangple.matwiki.login.dto.JoinMembershipDto;
 import com.gwangple.matwiki.login.service.LoginService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
