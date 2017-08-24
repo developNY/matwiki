@@ -53,11 +53,12 @@ public class MainController {
 	} 
 	
 	
+	
 	@RequestMapping(value = "/createResturant", method = RequestMethod.POST)
 	public String createResturant(HttpSession httpSession, Model model, 
 			RsturtInfoForm rsturtInfoForm) {
 		logger.debug("telNo : ",rsturtInfoForm.getTelNo());
-		//ºñÈ¸¿ø ÀÔ·Â
+		//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ô·ï¿½
 		mainService.insertResturant(httpSession, model, rsturtInfoForm);
 		return "main";
 	}   	
