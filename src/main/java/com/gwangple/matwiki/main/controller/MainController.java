@@ -61,7 +61,7 @@ public class MainController {
 		mainService.insertResturant(httpSession, model, rsturtInfoForm);
 		return "main";
 	}   	
-	
+	//랭킹
 	@RequestMapping(value = "/getListRanking", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getListRanking(Locale locale ) throws Exception {
 		logger.info("=====================  getListRanking ========================");
