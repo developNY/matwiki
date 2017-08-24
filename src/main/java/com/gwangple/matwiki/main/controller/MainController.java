@@ -53,7 +53,6 @@ public class MainController {
 	} 
 	
 	
-	
 	@RequestMapping(value = "/createResturant", method = RequestMethod.POST)
 	public String createResturant(HttpSession httpSession, Model model, 
 			RsturtInfoForm rsturtInfoForm) {
