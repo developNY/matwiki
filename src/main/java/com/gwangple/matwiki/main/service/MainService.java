@@ -58,7 +58,6 @@ public class MainService {
 			rsturtCreidMngForm.setAddr(rsturtInfoForm.getAddr());
 			rsturtCreidMngForm.setTel(rsturtInfoForm.getTelNo());
 			rsturtCreidMngForm.setCreateId(commService.getUserInfo(httpSession).getUserId());
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.debug(e.getMessage());
@@ -74,5 +73,14 @@ public class MainService {
 	 */
 	public Map<String, Object> getListRanking() throws SQLException{
 		return mainDao.getListRanking();		
+	}
+	
+	/**
+	 * 리뷰 개수
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getListRew() throws SQLException{
+		return mainDao.getListRew();		
 	}
 }

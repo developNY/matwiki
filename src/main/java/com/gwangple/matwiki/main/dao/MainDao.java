@@ -53,4 +53,15 @@ public class MainDao {
 		 map.put("list", list); 
 		 return map;
 	 }
+	 
+	 /**
+	  * 리뷰 개수
+	  * @return
+	  * @throws SQLException
+	  */
+	  public int getListRew()throws SQLException {
+			
+		 List<Map<String, Object>> list = query.selectList("main.getListRew");
+		 return list.size();
+	  }
 }

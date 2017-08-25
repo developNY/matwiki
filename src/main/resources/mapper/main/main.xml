@@ -4,9 +4,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
 	<select id="getListRanking" resultType="java.util.Map">
-        SELECT RSTURT_ID as rsturtId
-             , ADDR      as addr 
+        SELECT RSTURT_NM as rsturtName
+             , ADDR      as addr
+             , RNK		 as rank 
           FROM RSTURT_INFO 
+    </select>
+    
+    <select id="getListRew" parameterType="String" resultType="java.util.Map">
+        SELECT * 
+          FROM REW
+         WHERE RSTURT_MNG_ID = #{rsturtMngId}
     </select>
 
     <select id="list" resultType="hashmap">
