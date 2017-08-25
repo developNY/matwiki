@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import com.gwangple.matwiki.common.service.CommService;
 import com.gwangple.matwiki.main.dao.MainDao;
 import com.gwangple.matwiki.main.dto.NonUserInfoForm;
+import com.gwangple.matwiki.main.dto.RsturtCreidMngForm;
 import com.gwangple.matwiki.main.dto.RsturtInfoForm;
 
 public class MainService {
@@ -40,12 +41,31 @@ public class MainService {
 	public void insertResturant(HttpSession httpSession, Model model, RsturtInfoForm rsturtInfoForm){
 		NonUserInfoForm nonUserInfoForm = new NonUserInfoForm();
 		nonUserInfoForm.setIp("");
-		//鍮꾪쉶�썝 �엯�젰
+		//비회원 등록
 		mainDao.insertNonUserInfo(nonUserInfoForm);
-		//梨꾨쾲 
-		String seqNo = commService.getSeqGenerator("RSTURT_CREID_MNG");
+		//키생성 테이블
+		String rsturtMngId = mainDao.selectRsturtMngId();
+		logger.info("rsturtMngId : {} " + rsturtMngId);
+		setRsturtCreidMngForm(httpSession, rsturtMngId, rsturtInfoForm);
 		
 	}
+	
+	public RsturtCreidMngForm setRsturtCreidMngForm(final HttpSession httpSession, final String rsturtMngId, final RsturtInfoForm rsturtInfoForm){
+		RsturtCreidMngForm rsturtCreidMngForm = new RsturtCreidMngForm();	
+		try {
+			rsturtCreidMngForm.setRsturtMngId(rsturtMngId);
+			rsturtCreidMngForm.setRsturtNm(rsturtInfoForm.getRsturtId());
+			rsturtCreidMngForm.setAddr(rsturtInfoForm.getAddr());
+			rsturtCreidMngForm.setTel(rsturtInfoForm.getTelNo());
+			rsturtCreidMngForm.setCreateId(commService.getUserInfo(httpSession).getUserId());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.debug(e.getMessage());
+		}
+		return rsturtCreidMngForm;
+	}
+	
 	
 	/**
 	 * 랭킹 불러오기

@@ -62,5 +62,7 @@
 			,#{uptDt}/*UPT_DT*/
 		)
     </insert>
-    
+    <select id="getRsturtMngId" resultType="String">
+    	select cast(RPAD(DATE_FORMAT(now(),'%Y%m%e%H%i'),17,0) as unsigned) + 1
+    </select>
 </mapper>

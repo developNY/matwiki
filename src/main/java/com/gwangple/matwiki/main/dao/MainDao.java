@@ -11,8 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gwangple.matwiki.dao.HomeDao;
 import com.gwangple.matwiki.main.dto.NonUserInfoForm;
+import com.gwangple.matwiki.main.dto.RsturtCreidMngForm;
 
 public class MainDao {
 	private static final Logger logger = LoggerFactory.getLogger(MainDao.class);
@@ -32,8 +32,16 @@ public class MainDao {
 		query.insert("main.insertNonUserInfoForm", nonUserInfoForm);
 	}
 	
+	public void insertRsturtCreidMng(RsturtCreidMngForm rsturtCreidMngForm){
+		query.insert("main.insertRsturtCreidMng", rsturtCreidMngForm);
+	}
+	
+	public String selectRsturtMngId(){
+		return query.selectOne("main.selectRsturtMngId");
+	}
+	
 	/**
-	 * ·©Å· ºÒ·¯¿À±â
+	 * ëž­í‚¹ ë¦¬ìŠ¤íŠ¸
 	 * @return
 	 * @throws SQLException
 	 */
