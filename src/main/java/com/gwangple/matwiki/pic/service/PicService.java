@@ -1,10 +1,15 @@
 package com.gwangple.matwiki.pic.service;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,28 +19,32 @@ import com.gwangple.matwiki.pic.dao.PicDao;
 import com.gwangple.matwiki.pic.dto.PicDto;
 
 /**
- * ?¨Ï? service
+ * Ïù¥ÎØ∏ÏßÄ service
  * @author sukhwan
  *
  */
 @Service("PicService")
 public class PicService {
 
-	@Autowired
+	@Resource(name = "picDao")
 	PicDao picDao;
 	
-	// ?¥Î?∏Ï? Í≤ΩÎ?
-	String imgPath = "";
+	// Ïù¥ÎØ∏ÏßÄ Í≤ΩÎ°ú
+	private String imgPath = "";
 	
-	/** 
-	 * ?¨Ï? ????
-	 * @param picDto : ?¨Ï? ??Î≥?
-	 * @param image  : ?¨Ï? ????
-	 * @throws IOException 
+	// Ïç∏ÎÑ§Ïùº Í∞ÄÎ°ú ÌÅ¨Í∏∞
+	private Integer thumbWidth = 300;
+	// Ïç∏ÎÑ§Ïùº ÏÑ∏Î°ú ÌÅ¨Í∏∞
+	private Integer thumbHeight = 500;
+	
+	/**
+	 * Ïù¥ÎØ∏ÏßÄ Ï†ÄÏû•
+	 * @param picDto
+	 * @param image
+	 * @throws IOException
 	 */
-	public void insertPic(PicDto picDto,MultipartFile image) throws IOException{
-		// ?¨Ï? ??Î≤??? ????
-        savePic(picDto, image);
+	public void insertPic(PicDto picDto,MultipartFile image,String picFrontPath) throws IOException{
+        savePic(picDto, image,picFrontPath);
         
         
         picDao.insertPic(picDto);
@@ -43,47 +52,67 @@ public class PicService {
 	}
 	
 	/**
-	 * ?¨Ï? ??Î≤??? ???? 
-	 * @param image : ?¨Ï? ????
-	 * @throws IOException 
+	 * Ïù¥ÎØ∏ÏßÄ Ï†ÄÏû•(ÏÑúÎ≤ÑÏóê)
+	 * @param picDto
+	 * @param image
+	 * @throws IOException
 	 */
 	@SuppressWarnings("resource")
-	public void savePic(PicDto picDto,MultipartFile image) throws IOException{
+	public void savePic(PicDto picDto,MultipartFile image,String picFrontPath) throws IOException{
 		FileOutputStream fos;
 		
 		byte fileData[] = image.getBytes();
         
-		String path = imgPath + "\\" + UUID.randomUUID().toString();
+		String path ="\\" + UUID.randomUUID().toString();
         
-		fos = new FileOutputStream(path);
+		fos = new FileOutputStream(picFrontPath+path);
         fos.write(fileData);
         
-        // ???? Í≤ΩÎ? ????
-        picDto.setPicPath(path);
+        picDto.setPicFrontPath(picFrontPath);
+        picDto.setPicBackPath(path);
 	}
 	
 	/**
-	 * ?∏Î?§Ï?? Îß??§Í∏∞
+	 * Ïç∏ÎÑ§Ïùº Ï†ÄÏû•
 	 * @param picDto
-	 * @param path
 	 */
 	public void saveThumb(PicDto picDto){
 		
+		String path = "\\" + UUID.randomUUID().toString();
+		
+		File originFile = new File(picDto.getPicFrontPath()+picDto.getPicBackPath());
+		
+		File thumbFile  = new File("/thumb/"+path);
+		
+		try {
+			BufferedImage bufferOriginalImage = ImageIO.read(originFile);
+			BufferedImage bufferThumbFile = new BufferedImage(this.thumbWidth, this.thumbHeight, BufferedImage.TYPE_3BYTE_BGR);
+			Graphics2D graphic = bufferThumbFile.createGraphics();
+	        graphic.drawImage(bufferOriginalImage, 0, 0, this.thumbWidth, this.thumbHeight, null);
+	        ImageIO.write(bufferThumbFile, "jpg", thumbFile);
+	        
+	        picDto.setThumbYn("Y");
+	        picDto.setPicFrontPath("/thumb/");
+	        picDto.setPicBackPath(path);
+	        
+	        picDao.insertPic(picDto);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 	
 	/**
-	 * ?¨Ï? ????
-	 * @param picSeq : ?¨Ï?Î≤???
+	 * Ïù¥ÎØ∏ÏßÄ ÏÇ≠Ï†ú
+	 * @param picSeq
 	 */
 	public void deleteImage(String picSeq){
-		// ?¨Ï? ??Î≥? Ï°∞Ì??
 		Map<String,Object> pic = picDao.selectPic(picSeq);
 		
-		// ??Î≤????? ???? ????
 		File file = new File(pic.get("pic_path").toString());
 		file.delete();
-		
-		// ?¨Ï? ??Î≥? ????
 		picDao.deletePic(picSeq);
 	}
 }

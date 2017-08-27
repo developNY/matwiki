@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gwangple.matwiki.common.dao.AbstDao;
 import com.gwangple.matwiki.pic.dto.PicDto;
 
-@Repository("PicDao")
+@Repository("picDao")
 public class PicDao extends AbstDao{
 	
 	/**
@@ -35,6 +35,16 @@ public class PicDao extends AbstDao{
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> selectPic(String picSeq){
 		return (Map<String, Object>) this.selectList("Pic.selectPic", picSeq);
+	}
+	
+	/**
+	 * 사진 썸네일 조회
+	 * @param picSeq : 사진 번호
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectPicThumb(String picSeq){
+		return (Map<String, Object>) this.selectList("Pic.selectPicThumb", picSeq);
 	}
 	
 	/**

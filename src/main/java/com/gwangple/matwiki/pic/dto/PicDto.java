@@ -17,7 +17,11 @@ public class PicDto {
 	/**
 	 * 사진 경로
 	 */
-	private String picPath;
+	private String picFrontPath;
+	/**
+	 * 사진 뒷 경로
+	 */
+	private String picBackPath;
 	/**
 	 * 사진 파일명
 	 */
@@ -42,6 +46,11 @@ public class PicDto {
 	 * 수정 날짜
 	 */
 	private String uptDt;
+	
+	/**
+	 * 썸네일 여부
+	 */
+	private String thumbYn;
 	public String getMnuCd() {
 		return mnuCd;
 	}
@@ -53,12 +62,6 @@ public class PicDto {
 	}
 	public void setPicDic(String picDic) {
 		this.picDic = picDic;
-	}
-	public String getPicPath() {
-		return picPath;
-	}
-	public void setPicPath(String picPath) {
-		this.picPath = picPath;
 	}
 	public String getPicFileNm() {
 		return picFileNm;
@@ -95,6 +98,24 @@ public class PicDto {
 	}
 	public void setUptDt(String uptDt) {
 		this.uptDt = uptDt;
+	}
+	public String getThumbYn() {
+		return thumbYn;
+	}
+	public void setThumbYn(String thumbYn) {
+		this.thumbYn = thumbYn;
+	}
+	public String getPicFrontPath() {
+		return picFrontPath;
+	}
+	public void setPicFrontPath(String picFrontPath) {
+		this.picFrontPath = picFrontPath;
+	}
+	public String getPicBackPath() {
+		return picBackPath;
+	}
+	public void setPicBackPath(String picBackPath) {
+		this.picBackPath = picBackPath;
 	}
 	
 }
