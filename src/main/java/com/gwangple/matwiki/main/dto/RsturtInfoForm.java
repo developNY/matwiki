@@ -14,7 +14,8 @@ public class RsturtInfoForm {
 	private String bizEndTime =""; 
 	private String priceRngEnd = "";
 	private String rmdAddr = "";
-	private String rsturtId =""; 
+	private String rsturtId ="";
+	private String rsturtNm =""; 
 	private String addr = "";
 	
 	public String getRsturtMngId() {
@@ -22,6 +23,12 @@ public class RsturtInfoForm {
 	}
 	public void setRsturtMngId(String rsturtMngId) {
 		this.rsturtMngId = rsturtMngId;
+	}
+	public String getRsturtNm() {
+		return rsturtNm;
+	}
+	public void setRsturtNm(String rsturtNm) {
+		this.rsturtNm = rsturtNm;
 	}
 	public String getAddrSeq() {
 		return addrSeq;

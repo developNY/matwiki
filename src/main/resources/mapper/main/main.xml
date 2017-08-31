@@ -22,7 +22,7 @@
     
     <insert id="insertNonUserInfo" parameterType="com.gwangple.matwiki.main.dto.NonUserInfoForm">
     /*main.insertNonUserInfo*/
-		INSERT INTO (
+		INSERT INTO NON_USER_INFO(
 			IP
 			,CREATE_ID
 			,UPT_ID
@@ -33,14 +33,14 @@
 			 #{ip}/*IP*/
 			,#{createId}/*CREATE_ID*/
 			,#{uptId}/*UPT_ID*/
-			,#{createDt}/*CREATE_DT*/
-			,#{uptDt}/*UPT_DT*/
+			,NOW()/*CREATE_DT*/
+			,NOW()/*UPT_DT*/
 			,#{nonUserId}/*NON_USER_ID*/
 		)
     </insert>
     
     <insert id="insertRsturtCreidMng" parameterType="com.gwangple.matwiki.main.dto.RsturtCreidMngForm">
-    	/*main.*/
+    	/*main.insertRsturtCreidMng*/
     	INSERT INTO RSTURT_CREID_MNG(
 			 RSTURT_MNG_ID
 			,RSTURT_NM
@@ -65,11 +65,103 @@
 			,#{tel}/*TEL*/
 			,#{createId}/*CREATE_ID*/
 			,#{uptId}/*UPT_ID*/
-			,#{createDt}/*CREATE_DT*/
-			,#{uptDt}/*UPT_DT*/
+			,NOW()/*CREATE_DT*/
+			,NOW()/*UPT_DT*/
 		)
     </insert>
-    <select id="getRsturtMngId" resultType="String">
+    
+    <insert id="insertRsturtInfo" parameterType="com.gwangple.matwiki.main.dto.RsturtInfoForm">
+    	INSERT INTO RSTURT_INFO(
+		 RSTURT_MNG_ID
+		,ADDR_SEQ
+		,BIZ_STR_TIME
+		,TEL_NO
+		,RNK
+		,PRICE_RNG_STR
+		,CREATE_DT
+		,CREATE_ID
+		,UPT_ID
+		,UPT_DT
+		,BIZ_END_TIME
+		,PRICE_RNG_END
+		,RMD_ADDR
+		,RSTURT_ID
+		,ADDR
+		,RSTURT_NM
+		)VALUES (
+		 #{rsturtMngId}/*RSTURT_MNG_ID*/
+		,#{addrSeq}/*ADDR_SEQ*/
+		,#{bizStrTime}/*BIZ_STR_TIME*/
+		,#{telNo}/*TEL_NO*/
+		,#{rnk}/*RNK*/
+		,#{priceRngStr}/*PRICE_RNG_STR*/
+		,NOW()/*CREATE_DT*/
+		,#{createId}/*CREATE_ID*/
+		,#{uptId}/*UPT_ID*/
+		,NOW()/*UPT_DT*/
+		,#{bizEndTime}/*BIZ_END_TIME*/
+		,#{priceRngEnd}/*PRICE_RNG_END*/
+		,#{rmdAddr}/*RMD_ADDR*/
+		,#{rsturtId}/*RSTURT_ID*/
+		,#{addr}/*ADDR*/
+		,#{rsturtNm}/*RSTURT_NM*/
+		)
+    </insert>
+
+	<select id="selectRsturtInfo" resultType="java.util.HashMap">
+		SELECT 
+			RSTURT_MNG_ID
+			,ADDR_SEQ
+			,BIZ_STR_TIME
+			,TEL_NO
+			,RNK
+			,PRICE_RNG_STR
+			,CREATE_DT
+			,CREATE_ID
+			,UPT_ID
+			,UPT_DT
+			,BIZ_END_TIME
+			,PRICE_RNG_END
+			,RMD_ADDR
+			,RSTURT_ID
+			,ADDR
+			,RSTURT_NM
+		FROM RSTURT_INFO
+		WHERE RSTURT_MNG_ID = #{rsturtMngId}
+	</select>    
+	
+	<update id="updateRsturtInfo" parameterType="com.gwangple.matwiki.main.dto.RsturtInfoForm">
+		UPDATE RSTURT_INFO SET
+			 ADDR_SEQ = #{addrSeq}/*ADDR_SEQ*/
+			,BIZ_STR_TIME = #{bizStrTime}/*BIZ_STR_TIME*/
+			,TEL_NO = #{telNo}/*TEL_NO*/ 
+			,RNK = #{rnk}/*RNK*/
+			,PRICE_RNG_STR = #{priceRngStr}/*PRICE_RNG_STR*/
+			,UPT_ID = #{uptId}/*UPT_ID*/
+			,UPT_DT = NOW()/*UPT_DT*/ 
+			,BIZ_END_TIME = #{bizEndTime}/*BIZ_END_TIME*/
+			,PRICE_RNG_END = #{priceRngEnd}/*PRICE_RNG_END*/
+			,RMD_ADDR = #{rmdAddr}/*RMD_ADDR*/
+			,RSTURT_ID = #{rsturtId}/*RSTURT_ID*/
+			,ADDR = #{addr}/*ADDR*/
+			,RSTURT_NM = #{rsturtNm}/*RSTURT_NM*/
+		WHERE RSTURT_MNG_ID = #{rsturtMngId}
+	</update>
+	
+    <select id="selectKeyRsturtMngId" resultType="String">
+    	/*main.selectKeyRsturtMngId*/
     	select cast(RPAD(DATE_FORMAT(now(),'%Y%m%e%H%i'),17,0) as unsigned) + 1
+    </select>
+    
+    <select id="selectRsturtMngId" parameterType = "java.util.HashMap" resultType="java.util.HashMap">
+    	/*main.selectRsturtMngId*/
+    	select RSTURT_MNG_ID, RSTURT_NM from RSTURT_CREID_MNG
+		where rsturt_nm = #{rsturtNm}
+			and addr = #{addr}
+    </select>
+    
+    <select id="selectNonUserId" resultType="String">
+    	/*main.selectNonUserId*/
+    	select concat('nonuser',lpad(max(non_user_id)+1,11,0)) from non_user_info
     </select>
 </mapper>

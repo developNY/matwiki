@@ -6,9 +6,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 	
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource"                          destroy-method="close">
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	        <property name="url" value="jdbc:mysql://211.253.9.240:3306/matwiki" />
+	        <property name="url" value="jdbc:mysql://211.253.9.240:3306/matwiki?characterEncoding=utf8" />
 	        <property name="username" value="root" />
 	        <property name="password" value="1a2s3d4f" />
 	</bean>

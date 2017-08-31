@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.gwangple.matwiki.main.dto.NonUserInfoForm;
 import com.gwangple.matwiki.main.dto.RsturtCreidMngForm;
+import com.gwangple.matwiki.main.dto.RsturtInfoForm;
 
 public class MainDao {
 	private static final Logger logger = LoggerFactory.getLogger(MainDao.class);
@@ -28,16 +29,34 @@ public class MainDao {
 		return list;
     }
 	
-	public void insertNonUserInfo(NonUserInfoForm nonUserInfoForm){
-		query.insert("main.insertNonUserInfoForm", nonUserInfoForm);
-	}
-	
+	//맛집채번테이블 입력
 	public void insertRsturtCreidMng(RsturtCreidMngForm rsturtCreidMngForm){
 		query.insert("main.insertRsturtCreidMng", rsturtCreidMngForm);
 	}
+	//맛집등록
+	public void insertRsturtInfo(RsturtInfoForm rsturtInfoForm){
+		query.insert("main.insertRsturtInfo", rsturtInfoForm);
+	}
+	//키값 조회
+	public String selectKeyRsturtMngId(){
+		return query.selectOne("main.selectKeyRsturtMngId");
+	}
 	
-	public String selectRsturtMngId(){
-		return query.selectOne("main.selectRsturtMngId");
+	public Map<String, Object> selectRsturtInfo(String rsturtMngId){
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rsturtMngId", rsturtMngId);
+		return query.selectMap("selectRsturtInfo", paramMap, "main");
+	}
+	
+	public HashMap<String, Object> selectRsturtMngId(String rsturtNm, String addr){
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rsturtNm", rsturtNm);
+		paramMap.put("addr", addr);
+		return (HashMap)query.selectMap("selectRsturtMngId", paramMap, "main");
+	}
+	
+	public int updateRsturtInfo(RsturtInfoForm rsturtInfoForm) {
+		return query.update("main.updateRsturtInfo", rsturtInfoForm);
 	}
 	
 	/**

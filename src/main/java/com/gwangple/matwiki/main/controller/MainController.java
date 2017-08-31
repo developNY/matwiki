@@ -23,6 +23,7 @@ import com.gwangple.matwiki.main.dto.RsturtInfoForm;
 import com.gwangple.matwiki.main.service.MainService;
 
 @Controller
+@RequestMapping(value = "/main")
 public class MainController {
 	@Autowired
 	private SqlSession sqlSession;
@@ -56,17 +57,18 @@ public class MainController {
 	@RequestMapping(value = "/createResturant", method = RequestMethod.POST)
 	public String createResturant(HttpSession httpSession, Model model, 
 			RsturtInfoForm rsturtInfoForm) {
-		logger.debug("telNo : ",rsturtInfoForm.getTelNo());
-		//��ȸ�� �Է�
-		mainService.insertResturant(httpSession, model, rsturtInfoForm);
+		logger.info("telNo {}: ",rsturtInfoForm.getTelNo());
+		//맛집등록
+		mainService.insertMain(httpSession, model, rsturtInfoForm);
 		return "main";
-	}   	
+	}
+	
 	//랭킹보기
 	@RequestMapping(value = "/getListRanking", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getListRanking(Locale locale ) throws Exception {
 		logger.info("=====================  getListRanking ========================");
 		
-		logger.debug("locale{}", locale);
+		logger.info("locale{}", locale);
 		
 		Map<String, Object> map;
 		map = mainService.getListRanking();
