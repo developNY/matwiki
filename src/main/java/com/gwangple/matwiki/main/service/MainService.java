@@ -50,7 +50,8 @@ public class MainService {
 			return e.getMessage();
 		}
 	}
-
+	
+	//맛집등록 메인
 	public void insertMain(HttpSession httpSession, Model model, final RsturtInfoForm rsturtInfoForm) {
 		try {
 			String rsturtMngId = getRsturtMngId(rsturtInfoForm);
@@ -63,13 +64,14 @@ public class MainService {
 		}
 	}
 	
+	//맛집등록
 	public void insertResturant(HttpSession httpSession, Model model,final String rsturtMngId, final RsturtInfoForm rsturtInfoForm) {
 		NonUserInfoForm nonUserInfoForm = new NonUserInfoForm();
 		try {
 			nonUserInfoForm = setNonUserInfoForm(httpSession, rsturtInfoForm);
 			RsturtInfoForm rsturtInfoFormResult = new RsturtInfoForm();
 			rsturtInfoFormResult = setRsturtInfoForm(httpSession, rsturtMngId, rsturtInfoForm, nonUserInfoForm);
-			//맛집메인테이블입력
+			//맛집메인테이블입력. 데이터있으면 업데이트, 없으면 입력
 			if (isRsturtInfo(rsturtInfoFormResult)) {
 				mainDao.updateRsturtInfo(rsturtInfoFormResult);
 			} else {
@@ -97,11 +99,11 @@ public class MainService {
 		return RsturtInfoFormParam;
 	}
 	
+	//맛집채번테이블 입력
 	public void insertRsturtCreidMng(HttpSession httpSession, final String rsturtMngId,final RsturtInfoForm rsturtInfoForm) {
 		// 키생성 테이블
 		try {
 			RsturtCreidMngForm rsturtCreidMngForm = setRsturtCreidMngForm(httpSession, rsturtMngId, rsturtInfoForm);
-			//맛집채번테이블 입력
 			mainDao.insertRsturtCreidMng(rsturtCreidMngForm);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -122,6 +124,7 @@ public class MainService {
 		return rsturtMngId;
 	}
 	
+	//맛집관리테이블 등록유무
 	public boolean isRsturtMngId(RsturtInfoForm rsturtInfoForm){
 		String rsturtMngId = "";
 		HashMap<String, Object> resultMap = mainDao.selectRsturtMngId(rsturtInfoForm.getRsturtNm(), rsturtInfoForm.getAddr());
@@ -168,15 +171,41 @@ public class MainService {
 		return nonUserInfoForm;
 	}
 	
+	//맛집들록유무
 	@SuppressWarnings("unchecked")
 	public boolean isRsturtInfo(RsturtInfoForm rsturtInfoForm){
-		HashMap<String, Object> resultMap = (HashMap<String, Object>) mainDao.selectRsturtInfo(rsturtInfoForm.getRsturtMngId());
-		HashMap<String, Object> subResultMap = null;
-		if (resultMap != null && resultMap.get(null) != null) {
-			subResultMap = (HashMap<String, Object>) resultMap.get(null);
+		try {
+			String ipAddr = Inet4Address.getLocalHost().getHostAddress();
+			UserInfoDto userInfoDto = loginService.getNonUserInfo(ipAddr);
+			HashMap<String, Object> resultMap = (HashMap<String, Object>) mainDao.selectRsturtInfo(rsturtInfoForm.getRsturtMngId(),userInfoDto.getUserId());
+			HashMap<String, Object> subResultMap = null;
+			if (resultMap != null && resultMap.get(null) != null) {
+				subResultMap = (HashMap<String, Object>) resultMap.get(null);
+			}
+			if (subResultMap == null || "".equals(subResultMap.get("RSTURT_MSG_ID"))) return false;
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info(e.getMessage());
+			return false;
 		}
-		if (subResultMap == null || "".equals(subResultMap.get("RSTURT_MSG_ID"))) return false;
 		return true;
+	}
+	
+	public void updateMain(HttpSession httpSession, Model model, RsturtInfoForm rsturtInfoForm){
+		mainDao.updateRsturtInfo(rsturtInfoForm);
+	}
+	
+	public Map<String, Object> getRsturtInfo(HttpSession httpSession, final Model model, final RsturtInfoForm rsturtInfoForm){
+		Map<String, Object> rsturtInfoFormResult = new HashMap<String, Object>();
+		try {
+			String ipAddr = Inet4Address.getLocalHost().getHostAddress();
+			UserInfoDto userInfoDto = loginService.getNonUserInfo(ipAddr);
+			rsturtInfoFormResult = mainDao.selectRsturtInfo(rsturtInfoForm.getRsturtMngId(), userInfoDto.getUserId());
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info(e.getMessage());
+		}
+		return rsturtInfoFormResult;
 	}
 	
 	/**

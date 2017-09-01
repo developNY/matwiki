@@ -42,9 +42,10 @@ public class MainDao {
 		return query.selectOne("main.selectKeyRsturtMngId");
 	}
 	
-	public Map<String, Object> selectRsturtInfo(String rsturtMngId){
+	public Map<String, Object> selectRsturtInfo(String rsturtMngId, String userId){
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("rsturtMngId", rsturtMngId);
+		paramMap.put("userId", userId);
 		return query.selectMap("selectRsturtInfo", paramMap, "main");
 	}
 	

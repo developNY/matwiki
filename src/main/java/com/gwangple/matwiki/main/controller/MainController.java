@@ -1,3 +1,12 @@
+/**
+ * MainController  맛집등록,조회,상세보기  MainController 클래스 입니다.
+ * @author 김나연, 최대호 
+ * @since 2017.08.09
+ * @version 1.0
+ * <pre>
+ * 2017.08.09 : 최초 작성
+ * </pre>
+ */
 package com.gwangple.matwiki.main.controller;
 
 import java.text.DateFormat;
@@ -60,6 +69,25 @@ public class MainController {
 		logger.info("telNo {}: ",rsturtInfoForm.getTelNo());
 		//맛집등록
 		mainService.insertMain(httpSession, model, rsturtInfoForm);
+		return "main";
+	}
+	
+	@RequestMapping(value = "/updateResturant", method = RequestMethod.POST)
+	public String updateResturant(HttpSession httpSession, Model model, 
+			RsturtInfoForm rsturtInfoForm) {
+		logger.info("telNo {}: ",rsturtInfoForm.getTelNo());
+		//맛집등록
+		mainService.updateMain(httpSession, model, rsturtInfoForm);
+		return "main";
+	}
+	
+	@RequestMapping(value = "/detailResturant", method = RequestMethod.POST)
+	public String detailResturant(HttpSession httpSession, Model model, 
+			RsturtInfoForm rsturtInfoForm) {
+		logger.info("telNo {}: ",rsturtInfoForm.getTelNo());
+		//맛집등록
+		Map<String, Object> resultMap = mainService.getRsturtInfo(httpSession, model, rsturtInfoForm);
+		logger.info("resultMap : "+resultMap.toString());
 		return "main";
 	}
 	

@@ -108,24 +108,30 @@
 		)
     </insert>
 
-	<select id="selectRsturtInfo" resultType="java.util.HashMap">
+	<select id="selectRsturtInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		SELECT 
-			RSTURT_MNG_ID
-			,ADDR_SEQ
-			,BIZ_STR_TIME
-			,TEL_NO
-			,RNK
-			,PRICE_RNG_STR
-			,CREATE_DT
-			,CREATE_ID
-			,UPT_ID
-			,UPT_DT
-			,BIZ_END_TIME
-			,PRICE_RNG_END
-			,RMD_ADDR
-			,RSTURT_ID
-			,ADDR
-			,RSTURT_NM
+		    RSTURT_MNG_ID
+		    ,ADDR_SEQ
+		    ,BIZ_STR_TIME
+		    ,TEL_NO
+		    ,RNK
+		    ,PRICE_RNG_STR
+		    ,CREATE_DT
+		    ,CREATE_ID
+		    ,UPT_ID
+		    ,UPT_DT
+		    ,BIZ_END_TIME
+		    ,PRICE_RNG_END
+		    ,RMD_ADDR
+		    ,RSTURT_ID
+		    ,RSTURT_NM
+		    ,ADDR
+		    ,RECMM_MENU    
+		    ,(SELECT FLOOR(AVG(GRD)) FROM REW WHERE RSTURT_MNG_ID = #{rsturtMngId}) as avg_grd
+		    ,(SELECT PIC_DIC FROM PIC 
+		    	WHERE RSTURT_MNG_ID = #{rsturtMngId}
+		        and PIC_SEQ = (select MIN(PIC_SEQ) from pic where RSTURT_MNG_ID = #{rsturtMngId})) as main_pic
+			,(select count(user_id) from wsh where rsturt_mng_id = #{rsturtMngId} and user_id = #{userId}) as wsh_yn
 		FROM RSTURT_INFO
 		WHERE RSTURT_MNG_ID = #{rsturtMngId}
 	</select>    
