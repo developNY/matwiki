@@ -25,4 +25,18 @@
 		)
     </insert>
     
+    <sql id="pagingSelect">
+    	set @rowseq = 0;
+    	SELECT * FROM (
+    </sql>
+    
+    <sql id="pagingEnd">
+    	<if test="absPage == '1'">
+    	) A WHERE rowseq BETWEEN (#{absPage}-1) * #{pageCount} AND (#{absPage} * #{pageCount})
+    	</if>
+    	<if test="absPage != '1'">
+    	) A WHERE rowseq BETWEEN (#{absPage}-1) * #{pageCount} + 1 AND (#{absPage} * #{pageCount})
+    	</if>
+    </sql>
+    
 </mapper>

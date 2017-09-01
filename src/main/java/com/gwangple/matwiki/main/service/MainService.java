@@ -214,8 +214,8 @@ public class MainService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, Object> getListRanking() throws SQLException {
-		return mainDao.getListRanking();
+	public Map<String, Object> getListRanking(int absPage, int pageCount) throws SQLException {
+		return mainDao.getListRanking(absPage, pageCount);
 	}
 
 	/**

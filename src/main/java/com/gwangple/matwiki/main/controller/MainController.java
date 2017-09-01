@@ -92,14 +92,14 @@ public class MainController {
 	}
 	
 	//랭킹보기
-	@RequestMapping(value = "/getListRanking", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> getListRanking(Locale locale ) throws Exception {
+	@RequestMapping(value = "/getListRanking", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> getListRanking(Locale locale, int absPage, int pageCount) throws Exception {
 		logger.info("=====================  getListRanking ========================");
 		
 		logger.info("locale{}", locale);
 		
 		Map<String, Object> map;
-		map = mainService.getListRanking();
+		map = mainService.getListRanking(absPage, pageCount);
 		return map;
 	}
 }

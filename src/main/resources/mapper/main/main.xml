@@ -3,17 +3,21 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
-	<select id="getListRanking" resultType="java.util.Map">
+	<select id="getListRanking" parameterType="java.util.HashMap" resultType="java.util.Map">
+		<include refid="common.pagingSelect"/>
         SELECT RSTURT_NM as rsturtName
+        	 , RSTURT_MNG_ID as rsturtMngId
              , ADDR      as addr
              , RNK		 as rank 
-          FROM RSTURT_INFO 
+             , @rowseq := @rowseq + 1 as rowseq 
+          FROM RSTURT_INFO
+        <include refid="common.pagingEnd"/>
     </select>
     
     <select id="getListRew" parameterType="String" resultType="java.util.Map">
         SELECT * 
           FROM REW
-         WHERE RSTURT_MNG_ID = #{rsturtMngId}
+         WHERE RSTURT_MNG_ID = #{rsturtMngId}	
     </select>
 
     <select id="list" resultType="hashmap">

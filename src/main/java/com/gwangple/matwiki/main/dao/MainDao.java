@@ -65,12 +65,17 @@ public class MainDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	 public Map<String, Object> getListRanking()throws SQLException {
-		
-		 List<Map<String, Object>> list = query.selectList("main.getListRanking");
-		 
+	 public Map<String, Object> getListRanking(int absPage, int pageCount) {
 		 Map<String, Object> map = new HashMap<String, Object>();
-		 map.put("list", list); 
+		 try {
+			 HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			 paramMap.put("absPage", absPage);
+			 paramMap.put("pageCount", pageCount);
+			 List<Map<String, Object>> list = query.selectList("main.getListRanking", paramMap);
+			 map.put("list", list);
+		 } catch (Exception e) {
+			 logger.info(e.getMessage());
+		 }
 		 return map;
 	 }
 	 
