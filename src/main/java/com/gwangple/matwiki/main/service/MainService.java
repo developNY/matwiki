@@ -224,7 +224,7 @@ public class MainService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int getListRew() throws SQLException {
-		return mainDao.getListRew();
+	public Map<String, Object> getListRew(String rsturtMngId) throws SQLException {
+		return mainDao.getListRew(rsturtMngId);
 	}
 }

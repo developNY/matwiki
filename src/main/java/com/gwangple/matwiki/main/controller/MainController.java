@@ -102,4 +102,16 @@ public class MainController {
 		map = mainService.getListRanking(absPage, pageCount);
 		return map;
 	}
+	
+	//리뷰개수
+		@RequestMapping(value = "/getListRew", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> getListRew(String rsturtMngId) throws Exception {
+			logger.info("=====================  getListRew ========================");
+			
+			logger.info("locale{}", locale);
+			
+			Map<String, Object> map;
+			map = mainService.getListRew(rsturtMngId);
+			return map;
+		}
 }
