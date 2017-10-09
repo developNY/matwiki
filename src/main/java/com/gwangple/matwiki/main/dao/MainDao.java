@@ -84,9 +84,16 @@ public class MainDao {
 	  * @return
 	  * @throws SQLException
 	  */
-	  public int getListRew()throws SQLException {
-			
-		 List<Map<String, Object>> list = query.selectList("main.getListRew");
-		 return list.size();
+	  public Map<String, Object> getListRew(String rsturtMngId)throws SQLException {
+		  Map<String, Object> map = new HashMap<String, Object>();
+			 try {
+				 HashMap<String, Object> paramMap = new HashMap<String, Object>();
+				 paramMap.put("rsturtMngId", rsturtMngId);
+				 List<Map<String, Object>> rewNum = query.selectList("main.getListRew");
+				 map.put("rewNum", rewNum);
+			 } catch (Exception e) {
+				 logger.info(e.getMessage());
+			 }
+			 return map;
 	  }
 }
