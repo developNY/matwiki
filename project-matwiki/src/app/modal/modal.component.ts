@@ -1,39 +1,43 @@
-import { Component, OnInit, OnDestroy, Input, ElementRef } from '@angular/core';
+import { Component,  OnDestroy, Input, ElementRef, AfterViewInit } from '@angular/core';
+import {Subject} from "rxjs/Subject";
+import {interpolateParams} from "@angular/animations/browser/src/util";
 
 
 
 @Component({
   selector: 'mw-modal',
-  template: '<ng-content></ng-content>',
+  templateUrl: 'modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements OnDestroy, AfterViewInit  {
 
-  @Input() id:string;
-  private win: any = window;
-  private Modal: object;
-  constructor(private el: ElementRef) {
-  }
+  @Input() modalId:string;
+  @Input() modalTrigger: Subject<Boolean>;
+  @Input() className: string;
 
+  protected tw: any = (<any>window).twCom;
+  protected modal: any;
+  constructor(private el: ElementRef) {}
 
+  ngAfterViewInit() {
+    const componentElement: HTMLElement = this.el.nativeElement;
+    const modalElement: HTMLElement = componentElement.querySelector(`#${this.modalId}`) as HTMLElement;
 
-  ngOnInit() {
-    var element = this.el.nativeElement;
-    var twCom = this.win.twCom;
-    var id = element.getAttribute('id');
-
-    if(!id) {
-      throw new Error('id 속성이 존재하지않습니다.');
+    if(modalElement && this.tw && this.modalTrigger) {
+      this.modal = this.tw.Modal.init(modalElement);
+      this.modalTrigger.subscribe(data => data ? this.modal.openModal() : this.modal.closeModal());
     }
-
-    // var modal = element.querySelector('.modal');
-    // modal.setAttribute('id', id);
-    // this.Modal = twCom.Modal.init(modal);
   }
 
+  closeModal() {
+    if(this.modalTrigger) {
+      this.modalTrigger.next(false);
+    }
+  }
 
   ngOnDestroy() {
-
+    if(this.modalTrigger) {
+      this.modalTrigger.unsubscribe();
+    }
   }
-
 }

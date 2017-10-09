@@ -1,3 +1,7 @@
-<p>
-  modal works!
-</p>
+<div id="{{modalId}}" class="modal" [ngClass]="className">
+  <ng-content select=".modal-content"></ng-content>
+  <ng-content select=".modal-action"></ng-content>
+  <div class="modal-footer">
+    <div class="tw-btn-clear close-btn" (click)="closeModal()">닫기</div>
+  </div>
+</div>

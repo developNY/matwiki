@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AppRoutes, AppTriggerModel } from "../app-route.model"
-import { AppRouteService } from "../app-route.service"
+import { Observable, ObservableInput } from "rxjs/Observable";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { AppRoutes, AppTriggerModels } from "../app-route.model";
+import { AppRouteService } from "../app-route.service";
+import {Subject} from "rxjs/Subject";
 
 @Component({
   selector: 'mw-header',
@@ -10,8 +12,13 @@ import { AppRouteService } from "../app-route.service"
 export class HeaderComponent implements OnInit {
 
   routeConfig: AppRoutes;
-  modalConfig: AppTriggerModel;
+  modalConfig: AppTriggerModels;
   private localSearch: boolean = false;
+
+  //modal trigger
+  searchModalTrigger: Subject<boolean> = new Subject();
+
+
 
   constructor(private appRouteService: AppRouteService) { }
 

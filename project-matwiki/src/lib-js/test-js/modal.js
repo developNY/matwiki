@@ -82,7 +82,7 @@
                 buttons[index].addEventListener("click", this.openModal.bind(this));
             }
         } else {
-            throw new Error("Modal을 이벤트를 수행 할 component가 존재하지 않습니다.");
+            console.warn('모달 컴포넌트 open button element가 존재하지않습니다.');
         }
     };
 
@@ -98,13 +98,13 @@
 
 
     Modal.prototype.openModal = function(e) {
-        var Ele = e.target || e.srcElement;
-        var target = Ele.getAttribute("data-modal") || Ele.id;
-        var modal = target === this.Element.getAttribute("id") ? this : "";
-        if (modal) {
-            var modalElement = modal.Element;
-            var shadowElement = modal.createShadow(target);
-            var modalOption = modal.Option;
+        var element = e && e.target ? e.target : null;
+        var target = element ? element.getAttribute('id') : this.Element.getAttribute('id');
+
+        if (target) {
+            var modalElement = this.Element;
+            var shadowElement = this.createShadow(target);
+            var modalOption = this.Option;
             modalOption.openOption.y = modalOption.endY + modalOption.suffix;
             modalOption.openOption.onComplete = modalOption.openCallback;
             TweenLite.to(shadowElement, modalOption.delay, {
@@ -118,13 +118,13 @@
     };
 
     Modal.prototype.closeModal = function(e) {
-        var Ele = e.target || e.srcElement;
-        var target = Ele.getAttribute("data-modal") || Ele.id;
-        var modal = target === this.Element.getAttribute("id") ? this : null;
-        if (modal) {
-            var modalElement = modal.Element;
-            var shadowElement = modal.shadowEle;
-            var modalOption = modal.Option;
+        var element = e && e.target ? e.target : null;
+        var target = element ? element.getAttribute('id') : this.Element.getAttribute('id');
+
+        if (target) {
+            var modalElement = this.Element;
+            var shadowElement = this.shadowEle;
+            var modalOption = this.Option;
             modalOption.closeOption.y = modalOption.startY + modalOption.suffix;
             modalOption.closeOption.onComplete = modalOption.closeCallback;
 
@@ -141,14 +141,6 @@
         } else {
             throw new Error("Error Modal Close Error");
         }
-    };
-
-
-
-    Modal.prototype.closeAnimation = function() {
-        var shadowElement = this.shadowEle;
-        var modalOption = this.Option;
-        var Ele = this.Element;
     };
 
 

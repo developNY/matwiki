@@ -1,0 +1,1 @@
+export interface localSearchItem {  name: string;  detailAddr: string;}
